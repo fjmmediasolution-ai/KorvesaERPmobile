@@ -1,0 +1,3101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="corporate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korvesa Mobile ERP Solution | Operational POS & Mobile ERP (PKR Edition)</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* ==================== THEME VARIABLES & MULTI-COLOR PALETTE ==================== */
+        :root, [data-theme="corporate"], [data-theme="light"] {
+            --nav-navy: #0B1120;           
+            --nav-navy-dark: #060913;      
+            --bg-canvas: #F0F4F8;          
+            
+            /* Luminous Multi-Color Palette */
+            --primary: #3B82F6;            
+            --primary-hover: #2563EB;
+            --primary-dark: #1D4ED8;
+            --primary-light: rgba(59, 130, 246, 0.12);
+            --primary-100: rgba(59, 130, 246, 0.22);
+            --primary-500: #60A5FA;
+            --primary-glow: rgba(59, 130, 246, 0.35);
+            --surface: #FFFFFF;            
+            
+            /* Specialized Multi-Color Accents */
+            --clr-cyan: #06b6d4;
+            --clr-cyan-light: #ecfeff;
+            --clr-emerald: #10b981;
+            --clr-emerald-light: #ecfdf5;
+            --clr-violet: #8b5cf6;
+            --clr-violet-light: #f5f3ff;
+            --clr-amber: #f59e0b;
+            --clr-amber-light: #fffbeb;
+            --clr-rose: #f43f5e;
+            --clr-rose-light: #fff1f2;
+            --clr-indigo: #6366f1;
+            --clr-fuchsia: #d946ef;
+
+            --surface-subtle: #F8FAFC;
+            --surface-hover: #F1F5F9;
+            --border: #E2E8F0;
+            --border-strong: #CBD5E1;
+
+            /* Multi-Color Text Hierarchy */
+            --text-heading: #0F172A;
+            --text-body: #334155;
+            --text-muted: #64748B;
+            --text-subtle: #94A3B8;
+
+            --text-accent-blue: #2563EB;
+            --text-accent-cyan: #0891B2;
+            --text-accent-emerald: #059669;
+            --text-accent-violet: #7C3AED;
+            --text-accent-amber: #D97706;
+            --text-accent-rose: #E11D48;
+            
+            --success-bg: #ECFDF5;
+            --success-text: #059669;
+            --warning-bg: #FFFBEB;
+            --warning-text: #D97706;
+            --danger-bg: #FEF2F2;
+            --danger-text: #E11D48;
+            --info-bg: #EFF6FF;
+            --info-text: #2563EB;
+
+            --card-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+            --topbar-bg: #0B1120;
+        }
+
+        [data-theme="dark"] {
+            --nav-navy: #070B14;
+            --nav-navy-dark: #03060A;
+            --bg-canvas: #0A0E1A;
+            --primary: #60A5FA;
+            --primary-hover: #3B82F6;
+            --primary-dark: #1D4ED8;
+            --primary-light: rgba(96, 165, 250, 0.16);
+            --primary-100: rgba(96, 165, 250, 0.28);
+            --primary-500: #93C5FD;
+            --primary-glow: rgba(96, 165, 250, 0.35);
+            --surface: #111827;
+
+            --clr-cyan: #22d3ee;
+            --clr-cyan-light: rgba(34, 211, 238, 0.15);
+            --clr-emerald: #34d399;
+            --clr-emerald-light: rgba(52, 211, 153, 0.15);
+            --clr-violet: #a78bfa;
+            --clr-violet-light: rgba(167, 139, 250, 0.15);
+            --clr-amber: #fbbf24;
+            --clr-amber-light: rgba(251, 191, 36, 0.15);
+            --clr-rose: #fb7185;
+            --clr-rose-light: rgba(251, 113, 133, 0.15);
+            --clr-indigo: #818cf8;
+            --clr-fuchsia: #e879f9;
+            
+            --surface-subtle: #162032;
+            --surface-hover: #1E293B;
+            --border: #2D3748;
+            --border-strong: #4A5568;
+
+            --text-heading: #F8FAFC;
+            --text-body: #CBD5E1;
+            --text-muted: #94A3B8;
+            --text-subtle: #64748B;
+
+            --text-accent-blue: #93C5FD;
+            --text-accent-cyan: #67E8F9;
+            --text-accent-emerald: #6EE7B7;
+            --text-accent-violet: #C4B5FD;
+            --text-accent-amber: #FCD34D;
+            --text-accent-rose: #FDA4AF;
+            
+            --success-bg: rgba(16, 185, 129, 0.18);
+            --success-text: #6EE7B7;
+            --warning-bg: rgba(245, 158, 11, 0.18);
+            --warning-text: #FCD34D;
+            --danger-bg: rgba(244, 63, 94, 0.18);
+            --danger-text: #FDA4AF;
+            --info-bg: rgba(59, 130, 246, 0.18);
+            --info-text: #93C5FD;
+
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.45);
+            --topbar-bg: #070B14;
+        }
+
+        :root {
+            --sidebar-width: 270px;
+            --topbar-height: 70px;
+            --radius-xs: 6px;
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 20px;
+            --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-body);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .text-grad-primary {
+            background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-grad-emerald {
+            background: linear-gradient(135deg, #10B981 0%, #06B6D4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-grad-sunset {
+            background: linear-gradient(135deg, #F59E0B 0%, #F43F5E 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .text-grad-violet {
+            background: linear-gradient(135deg, #8B5CF6 0%, #D946EF 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .clr-emerald { color: var(--text-accent-emerald) !important; }
+        .clr-cyan    { color: var(--text-accent-cyan) !important; }
+        .clr-violet  { color: var(--text-accent-violet) !important; }
+        .clr-amber   { color: var(--text-accent-amber) !important; }
+        .clr-rose    { color: var(--text-accent-rose) !important; }
+        .clr-blue    { color: var(--text-accent-blue) !important; }
+
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 999px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* ==================== 1. LOGIN VIEW ==================== */
+        #loginView {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top right, #1E1B4B, #0B1120 70%);
+            position: relative;
+            overflow: hidden;
+            padding: 24px;
+            z-index: 1000;
+        }
+
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.55;
+            pointer-events: none;
+            animation: orbFloat 16s ease-in-out infinite alternate;
+        }
+        .orb-1 { width: 480px; height: 480px; background: linear-gradient(135deg, #6366F1, #3B82F6); top: -120px; left: -100px; }
+        .orb-2 { width: 420px; height: 420px; background: linear-gradient(135deg, #06B6D4, #10B981); bottom: -80px; right: -80px; }
+
+        @keyframes orbFloat {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(40px, -40px) scale(1.1); }
+        }
+
+        .login-grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+            pointer-events: none;
+        }
+
+        .login-card {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 42px 36px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            animation: cardEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes cardEntrance {
+            0% { opacity: 0; transform: translateY(24px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(139, 92, 246, 0.15));
+            color: #2563EB;
+            padding: 7px 16px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 13px;
+            margin-bottom: 18px;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+        }
+        .pulse-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 10px #10B981;
+        }
+
+        .login-title { font-size: 25px; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 6px; }
+        .login-subtitle { font-size: 13.5px; color: #64748B; margin-bottom: 22px; font-weight: 500; }
+
+        .cred-box {
+            background: linear-gradient(135deg, #F8FAFC, #F1F5F9);
+            border: 1.5px dashed #CBD5E1;
+            border-radius: var(--radius-sm);
+            padding: 12px 14px;
+            font-size: 13px;
+            color: #1E293B;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .quick-fill-btn {
+            background: #ffffff;
+            border: 1.5px solid var(--border-strong);
+            color: var(--text-accent-blue);
+            font-size: 11.5px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .quick-fill-btn:hover { 
+            background: var(--primary); 
+            color: #ffffff; 
+            border-color: var(--primary);
+            box-shadow: 0 4px 10px var(--primary-glow);
+        }
+
+        .input-group { margin-bottom: 16px; text-align: left; }
+        .input-group label { display: block; font-size: 12.5px; font-weight: 800; color: #1E293B; margin-bottom: 6px; }
+        .input-box { position: relative; display: flex; align-items: center; }
+        .input-box i.lead-icon { position: absolute; left: 14px; color: #6366F1; font-size: 14px; }
+        .input-box input {
+            width: 100%;
+            padding: 12px 42px;
+            background: #F8FAFC;
+            border: 1.5px solid #E2E8F0;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            color: #0F172A;
+            font-weight: 600;
+            outline: none;
+            transition: var(--transition);
+        }
+        .input-box input:focus {
+            background: #ffffff;
+            border-color: #6366F1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+        }
+        .input-box .trailing-action { position: absolute; right: 14px; color: #64748B; cursor: pointer; }
+
+        .btn-primary {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(135deg, #3B82F6 0%, #6366F1 50%, #8B5CF6 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-size: 14.5px;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px -4px rgba(99, 102, 241, 0.4);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 26px -4px rgba(99, 102, 241, 0.55);
+        }
+
+        .error-alert {
+            display: none;
+            background: var(--danger-bg);
+            color: var(--danger-text);
+            border: 1.5px solid var(--border);
+            padding: 10px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            margin-bottom: 16px;
+            font-weight: 700;
+            text-align: center;
+        }
+
+        /* ==================== 2. MAIN APP WORKSPACE ==================== */
+        #dashboardView { display: none; min-height: 100vh; background-color: var(--bg-canvas); }
+
+        .sidebar-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px); z-index: 990; opacity: 0; visibility: hidden;
+            transition: var(--transition);
+        }
+        .sidebar-overlay.active { opacity: 1; visibility: visible; }
+
+        .sidebar {
+            position: fixed; top: 0; left: 0; height: 100vh;
+            width: var(--sidebar-width); background: var(--nav-navy);
+            border-right: 1px solid rgba(255, 255, 255, 0.08); z-index: 1000;
+            display: flex; flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar.nav-hidden {
+            transform: translateX(-100%) !important;
+        }
+
+        .sidebar-header {
+            height: var(--topbar-height);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0;
+        }
+
+        .brand-container { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .brand-symbol {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, #10B981, #06B6D4);
+            color: #ffffff; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.4);
+        }
+        .brand-title { font-size: 19px; font-weight: 900; color: #ffffff; letter-spacing: -0.4px; }
+        .brand-title span { 
+            background: linear-gradient(135deg, #38BDF8, #818CF8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .sidebar-menu {
+            flex: 1; padding: 14px 12px; overflow-y: auto;
+            list-style: none; display: flex; flex-direction: column; gap: 4px;
+        }
+        .menu-category {
+            font-size: 10.5px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 1.2px; padding: 14px 10px 5px;
+        }
+        .menu-cat-control { color: #67E8F9; }
+        .menu-cat-pos { color: #A78BFA; }
+        .menu-cat-finance { color: #FCD34D; }
+        .menu-cat-sys { color: #FDA4AF; }
+
+        .nav-link {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 14px; color: #94A3B8; border-radius: var(--radius-sm);
+            font-size: 13px; font-weight: 700; cursor: pointer; transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .nav-link-content { display: flex; align-items: center; gap: 12px; }
+        .nav-link i { font-size: 15px; width: 20px; text-align: center; }
+        
+        .nav-icon-dash { color: #38BDF8; }
+        .nav-icon-pur  { color: #F43F5E; }
+        .nav-icon-pos  { color: #10B981; }
+        .nav-icon-mob  { color: #8B5CF6; }
+        .nav-icon-imei { color: #F59E0B; }
+        .nav-icon-acc  { color: #EC4899; }
+        .nav-icon-cust { color: #06B6D4; }
+        .nav-icon-sup  { color: #EAB308; }
+        .nav-icon-accs { color: #14B8A6; }
+        .nav-icon-rep  { color: #A855F7; }
+        .nav-icon-set  { color: #94A3B8; }
+
+        .nav-link:hover { background: rgba(255, 255, 255, 0.07); color: #ffffff; }
+        
+        .nav-link.active {
+            background: linear-gradient(135deg, #3B82F6, #6366F1) !important;
+            color: #ffffff !important;
+            border-color: rgba(255, 255, 255, 0.2);
+            font-weight: 800;
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+        }
+        .nav-link.active i { color: #ffffff !important; }
+
+        .sidebar-footer {
+            padding: 14px 16px; border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex; align-items: center; justify-content: space-between;
+            background: var(--nav-navy-dark); flex-shrink: 0;
+        }
+        .user-avatar-img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid #8B5CF6; }
+        .user-details h4 { font-size: 13.5px; font-weight: 800; color: #FFFFFF; }
+        .user-details p { font-size: 11px; color: #38BDF8; font-weight: 600; }
+        .btn-icon-danger {
+            background: transparent; border: none; color: #FDA4AF;
+            cursor: pointer; padding: 8px; border-radius: var(--radius-xs);
+        }
+        .btn-icon-danger:hover { background: rgba(225, 29, 72, 0.25); color: #FFF; }
+
+        .main-wrapper {
+            margin-left: var(--sidebar-width); min-height: 100vh;
+            display: flex; flex-direction: column;
+            transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .main-wrapper.full-width { margin-left: 0 !important; }
+
+        .topbar {
+            height: var(--topbar-height); background: var(--nav-navy);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky; top: 0; z-index: 500;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 28px;
+        }
+        .topbar-left { display: flex; align-items: center; gap: 14px; }
+        
+        .btn-nav-dots {
+            width: 34px; height: 34px; border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.18); background: rgba(255, 255, 255, 0.08);
+            color: #38BDF8; display: inline-flex; align-items: center;
+            justify-content: center; cursor: pointer; transition: var(--transition);
+            font-size: 16px; margin-right: 12px;
+        }
+        .btn-nav-dots:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            transform: scale(1.08);
+            box-shadow: 0 0 14px var(--primary-glow);
+        }
+
+        .current-page-badge {
+            font-size: 15px; font-weight: 800; color: #ffffff;
+            display: flex; align-items: center;
+        }
+        #currentPageTitle {
+            background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .topbar-right { display: flex; align-items: center; gap: 12px; }
+        
+        .theme-selector-pill {
+            display: flex; align-items: center; gap: 6px;
+            background: rgba(255, 255, 255, 0.07); padding: 5px 12px;
+            border-radius: 999px; font-size: 12px; font-weight: 800;
+            color: #FCD34D; border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .theme-select-inline {
+            background: transparent; border: none; font-size: 12px;
+            font-weight: 800; color: #FFFFFF; outline: none; cursor: pointer;
+        }
+        .theme-select-inline option {
+            background-color: var(--nav-navy);
+            color: #ffffff;
+        }
+
+        .stat-pill-branch {
+            display: flex; align-items: center; gap: 7px;
+            background: rgba(16, 185, 129, 0.12); padding: 6px 14px;
+            border-radius: 999px; font-size: 12px; font-weight: 800;
+            color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .content-container { padding: 26px 30px; flex: 1; }
+
+        .app-section { display: none; animation: fadeIn 0.2s ease forwards; }
+        .app-section.active-section { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ==================== 3. SHARED UI ELEMENTS ==================== */
+        .page-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 22px; flex-wrap: wrap; gap: 12px;
+        }
+        .page-title h2 { 
+            font-size: 22px; font-weight: 900; letter-spacing: -0.4px; 
+            color: var(--text-heading);
+        }
+        .page-title p { 
+            font-size: 13px; color: var(--text-muted); margin-top: 3px; font-weight: 500;
+        }
+        
+        .btn-action-primary {
+            background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%); 
+            color: #ffffff; border: none;
+            padding: 10px 18px; border-radius: var(--radius-sm); font-size: 13.5px;
+            font-weight: 800; cursor: pointer; display: inline-flex;
+            align-items: center; gap: 8px; transition: var(--transition);
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+        .btn-action-primary:hover { 
+            transform: translateY(-1.5px);
+            box-shadow: 0 8px 20px var(--primary-glow);
+        }
+
+        .btn-action-danger {
+            background: var(--danger-bg); color: var(--text-accent-rose); border: 1.5px solid var(--border);
+            padding: 6px 12px; border-radius: 8px; font-size: 11.5px;
+            font-weight: 800; cursor: pointer; display: inline-flex;
+            align-items: center; gap: 5px; transition: var(--transition);
+        }
+        .btn-action-danger:hover { background: var(--clr-rose); color: #fff; border-color: var(--clr-rose); }
+
+        .card-box {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 22px;
+            box-shadow: var(--card-shadow); margin-bottom: 22px;
+            min-width: 0;
+        }
+
+        .kpi-card {
+            border-top: 4px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .kpi-card::after {
+            content: ""; position: absolute; top: 0; right: 0; width: 80px; height: 80px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+            pointer-events: none;
+        }
+        .kpi-card-sales    { border-top-color: #10B981; }
+        .kpi-card-stock    { border-top-color: #3B82F6; }
+        .kpi-card-payables { border-top-color: #F43F5E; }
+        .kpi-card-cash     { border-top-color: #F59E0B; }
+
+        .chart-wrapper-box {
+            position: relative;
+            width: 100%;
+            height: 260px;
+            min-height: 260px;
+            overflow: hidden;
+        }
+        .chart-wrapper-box canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        .table-responsive { width: 100%; overflow-x: auto; }
+        .erp-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .erp-table th {
+            background: var(--surface-subtle); font-size: 11px; font-weight: 800;
+            color: var(--text-accent-blue); text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 12px 14px; border-bottom: 2px solid var(--border);
+        }
+        .erp-table td {
+            padding: 12px 14px; font-size: 13px; color: var(--text-body);
+            border-bottom: 1px solid var(--border); vertical-align: middle;
+        }
+        .erp-table tr:hover { background: var(--surface-hover); }
+
+        .table-item-cell { display: flex; align-items: center; gap: 12px; }
+        .table-thumb {
+            width: 38px; height: 38px; border-radius: 8px;
+            object-fit: cover; border: 1.5px solid var(--border);
+            background: var(--surface-subtle); flex-shrink: 0;
+        }
+
+        .badge-status {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+        .status-green { background: var(--success-bg); color: var(--text-accent-emerald); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .status-amber { background: var(--warning-bg); color: var(--text-accent-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .status-rose  { background: var(--danger-bg); color: var(--text-accent-rose); border: 1px solid rgba(244, 63, 94, 0.3); }
+        .status-blue  { background: var(--info-bg); color: var(--text-accent-blue); border: 1px solid rgba(59, 130, 246, 0.3); }
+        .status-violet{ background: var(--clr-violet-light); color: var(--text-accent-violet); border: 1px solid rgba(139, 92, 246, 0.3); }
+        .status-cyan  { background: var(--clr-cyan-light); color: var(--text-accent-cyan); border: 1px solid rgba(6, 182, 212, 0.3); }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--surface-subtle);
+            color: var(--text-accent-violet);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11.5px;
+            font-weight: 700;
+            border: 1px solid var(--border);
+        }
+
+        .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        .form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+        .form-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+        .form-field { margin-bottom: 14px; }
+        .form-field label { display: block; font-size: 12px; font-weight: 800; color: var(--text-heading); margin-bottom: 5px; }
+        
+        .form-control, .form-field input, .form-field select, .form-field textarea {
+            width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm); font-size: 13.5px; color: var(--text-heading);
+            background: var(--surface-subtle); outline: none; transition: var(--transition);
+            font-weight: 600;
+        }
+        .form-control:focus, .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+            background: var(--surface); border-color: #3B82F6;
+            box-shadow: 0 0 0 3.5px rgba(59, 130, 246, 0.18);
+        }
+
+        .image-upload-wrapper {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 16px; background: var(--surface-subtle);
+            border: 2px dashed var(--border-strong); border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+        }
+        .img-preview-box {
+            width: 56px; height: 56px; border-radius: var(--radius-xs);
+            border: 1.5px solid var(--border); background: var(--surface);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; flex-shrink: 0; color: var(--clr-violet);
+        }
+        .img-preview-box img { width: 100%; height: 100%; object-fit: contain; }
+
+        .section-separator {
+            font-size: 11.5px; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.8px; color: var(--text-accent-violet);
+            border-bottom: 1.5px dashed var(--border);
+            padding-bottom: 6px; margin: 18px 0 14px 0; display: flex; align-items: center; gap: 8px;
+        }
+
+        .theme-cards-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px; margin: 16px 0 24px;
+        }
+        .theme-card {
+            border: 2px solid var(--border); border-radius: var(--radius-md);
+            padding: 16px; cursor: pointer; transition: var(--transition);
+            background: var(--surface-subtle); display: flex; flex-direction: column; gap: 10px;
+        }
+        .theme-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+        .theme-card.active-theme-card {
+            border-color: var(--primary); background: var(--primary-light);
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .theme-preview-box {
+            height: 65px; border-radius: var(--radius-sm); display: flex;
+            overflow: hidden; border: 1px solid var(--border);
+        }
+        .theme-card-header { display: flex; align-items: center; justify-content: space-between; }
+        .theme-card-header h4 { font-size: 14px; font-weight: 800; color: var(--text-heading); }
+
+        /* ==================== 4. POS TERMINAL STYLES ==================== */
+        .pos-grid-layout {
+            display: grid; grid-template-columns: 1.65fr 1fr;
+            gap: 20px; align-items: start;
+        }
+        .pos-catalog-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 18px; box-shadow: var(--card-shadow);
+        }
+        .pos-filter-bar {
+            display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap;
+        }
+        .pos-search-input {
+            flex: 1; min-width: 200px; padding: 10px 14px;
+            border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+            background: var(--surface-subtle); color: var(--text-heading);
+            font-size: 13.5px; font-weight: 600; outline: none;
+        }
+        .pos-search-input:focus { border-color: var(--primary); background: var(--surface); }
+
+        .pos-items-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px; max-height: 560px; overflow-y: auto; padding-right: 4px;
+        }
+        .pos-product-card {
+            border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+            padding: 12px; background: var(--surface); cursor: pointer;
+            transition: var(--transition); display: flex; flex-direction: column;
+            justify-content: space-between; overflow: hidden; position: relative;
+        }
+        .pos-product-card:hover {
+            border-color: #3B82F6; transform: translateY(-3px);
+            box-shadow: 0 8px 18px var(--primary-glow);
+        }
+        .pos-product-img-box {
+            width: 100%; height: 78px; border-radius: var(--radius-xs);
+            background: var(--surface-subtle); border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; margin-bottom: 8px; padding: 4px;
+        }
+        .pos-product-img-box img {
+            max-width: 100%; max-height: 100%; object-fit: contain;
+            transition: transform 0.25s ease;
+        }
+        .pos-product-card:hover .pos-product-img-box img { transform: scale(1.08); }
+        .pos-product-card h4 { font-size: 13px; font-weight: 800; color: var(--text-heading); line-height: 1.3; }
+        
+        .pos-product-card .price { 
+            font-size: 14.5px; font-weight: 900; 
+            color: var(--text-accent-emerald); 
+            margin: 4px 0 2px 0; 
+        }
+        .pos-product-card .stock-tag { 
+            font-size: 11px; font-weight: 700; color: var(--text-accent-violet); 
+        }
+
+        .pos-cart-panel {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 20px; box-shadow: var(--card-shadow);
+        }
+        .pos-section-label {
+            font-size: 12.5px; font-weight: 800; color: var(--text-heading);
+            margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;
+        }
+        .pos-select-box {
+            width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm); font-size: 13px; font-weight: 700;
+            color: var(--text-heading); background: var(--surface-subtle);
+            outline: none; cursor: pointer; transition: var(--transition);
+        }
+        .pos-select-box:focus { border-color: var(--primary); background: var(--surface); }
+
+        .cart-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+        .cart-table th { font-size: 11px; font-weight: 800; color: var(--text-accent-blue); border-bottom: 1.5px solid var(--border); padding: 8px 4px; text-transform: uppercase; }
+        .cart-table td { font-size: 12.5px; padding: 8px 4px; border-bottom: 1px solid var(--border); color: var(--text-heading); vertical-align: middle; }
+        
+        .cart-item-thumb {
+            width: 30px; height: 30px; border-radius: 6px;
+            object-fit: cover; border: 1px solid var(--border); flex-shrink: 0;
+        }
+
+        .cart-summary {
+            background: var(--surface-subtle); border-radius: var(--radius-sm);
+            border: 1.5px solid var(--border); padding: 16px; margin-bottom: 16px;
+        }
+        .summary-row { display: flex; justify-content: space-between; align-items: center; font-size: 13.5px; margin-bottom: 8px; font-weight: 600; }
+        .summary-row.total {
+            font-size: 17px; font-weight: 900; color: var(--text-heading);
+            border-top: 2px dashed var(--border); padding-top: 10px; margin-top: 10px;
+        }
+        .pos-discount-input {
+            width: 95px; padding: 5px 8px; font-size: 12.5px; font-weight: 800;
+            text-align: right; background: var(--surface); color: var(--text-accent-rose);
+            border: 1.5px solid var(--border); border-radius: var(--radius-xs); outline: none;
+        }
+        .pos-discount-input:focus { border-color: var(--clr-rose); }
+
+        /* ==================== 5. MODAL SYSTEM ==================== */
+        .erp-modal-overlay {
+            position: fixed; inset: 0; background: rgba(11, 17, 32, 0.75);
+            backdrop-filter: blur(6px); z-index: 2000; display: none;
+            align-items: center; justify-content: center; padding: 16px;
+        }
+        .erp-modal-overlay.active { display: flex; }
+        .erp-modal {
+            background: var(--surface); width: 100%; max-width: 580px;
+            border-radius: var(--radius-lg); padding: 26px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.45); animation: modalIn 0.22s ease;
+            max-height: 92vh; overflow-y: auto; border: 1px solid var(--border);
+        }
+        .erp-modal-lg { max-width: 820px; }
+        @keyframes modalIn { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
+        
+        .modal-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1.5px solid var(--border);
+        }
+        .modal-header h3 { font-size: 17px; font-weight: 900; color: var(--text-heading); }
+        .btn-modal-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--text-muted); }
+        .btn-modal-close:hover { color: var(--text-accent-rose); }
+
+        .thermal-receipt {
+            background: #fff; padding: 22px; border: 1.5px dashed #CBD5E1;
+            font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.5;
+            color: #0F172A; border-radius: var(--radius-xs);
+        }
+        .receipt-center { text-align: center; margin-bottom: 12px; }
+        .receipt-line { border-bottom: 1.5px dashed #000; margin: 10px 0; }
+
+        /* ==================== 6. SETTINGS HUB ==================== */
+        .settings-layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; align-items: start; }
+        .settings-menu-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 10px; box-shadow: var(--card-shadow); }
+        .settings-menu-list { list-style: none; display: flex; flex-direction: column; gap: 4px; max-height: calc(100vh - 260px); overflow-y: auto; }
+        .settings-tab-btn {
+            width: 100%; text-align: left; padding: 10px 14px; border: none;
+            background: transparent; color: var(--text-body); border-radius: var(--radius-sm);
+            font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 10px; cursor: pointer;
+        }
+        .settings-tab-btn i { width: 18px; color: var(--text-muted); text-align: center; font-size: 14px; }
+        .settings-tab-btn:hover { background: var(--surface-subtle); color: var(--text-accent-blue); }
+        .settings-tab-btn.active-tab { 
+            background: var(--primary-light); 
+            color: var(--text-accent-blue); 
+            font-weight: 800; 
+            border: 1px solid var(--primary-100);
+        }
+        .settings-tab-btn.active-tab i { color: var(--primary); }
+
+        .settings-content-card {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 26px; min-height: 480px; box-shadow: var(--card-shadow);
+        }
+        .settings-pane { display: none; }
+        .settings-pane.active-pane { display: block; }
+        .pane-header { padding-bottom: 14px; margin-bottom: 18px; border-bottom: 1.5px solid var(--border); }
+        .pane-header h3 { font-size: 17px; font-weight: 900; color: var(--text-heading); }
+        .pane-header p { font-size: 12.5px; color: var(--text-muted); margin-top: 3px; font-weight: 500; }
+
+        .switch-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 16px; background: var(--surface-subtle); border-radius: var(--radius-sm);
+            border: 1px solid var(--border); margin-bottom: 10px;
+        }
+        .switch-info h4 { font-size: 13px; font-weight: 800; color: var(--text-heading); }
+        .toggle-switch { position: relative; width: 40px; height: 22px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute; cursor: pointer; inset: 0; background: var(--border-strong);
+            border-radius: 999px; transition: .2s;
+        }
+        .toggle-slider:before {
+            position: absolute; content: ""; height: 16px; width: 16px;
+            left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: .2s;
+        }
+        input:checked + .toggle-slider { background: #10B981; }
+        input:checked + .toggle-slider:before { transform: translateX(18px); }
+
+        .toast-box {
+            position: fixed; bottom: 24px; right: 24px;
+            background: linear-gradient(135deg, #0B1120, #1E1B4B); 
+            color: #ffffff; padding: 14px 20px;
+            border-radius: var(--radius-sm); font-size: 13.5px; font-weight: 700;
+            display: flex; align-items: center; gap: 10px; z-index: 9999;
+            transform: translateY(100px); opacity: 0; transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+        .toast-box.show { transform: translateY(0); opacity: 1; }
+
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.active { transform: translateX(0) !important; }
+            .main-wrapper { margin-left: 0 !important; }
+            .pos-grid-layout, .settings-layout, .form-grid-4, .form-grid-3 { grid-template-columns: 1fr; }
+            .content-container { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast Notification Banner -->
+    <div id="toastNotification" class="toast-box">
+        <i class="fa-solid fa-circle-check" style="color: #34D399; font-size: 16px;"></i>
+        <span id="toastMessage">Ready</span>
+    </div>
+
+    <!-- ==================== 1. LOGIN SCREEN ==================== -->
+    <div id="loginView">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="login-grid-pattern"></div>
+
+        <div class="login-card">
+            <div style="text-align: center;">
+                <div class="brand-badge">
+                    <span class="pulse-dot"></span>
+                    <span>Korvesa Mobile ERP Solution • PKR</span>
+                </div>
+                <h2 class="login-title text-grad-primary">Sign In</h2>
+                <p class="login-subtitle">POS, Visual Purchasing & Dual IMEI Tracking Connected</p>
+            </div>
+
+            <div class="cred-box">
+                <div>
+                    <i class="fa-solid fa-key" style="color: #6366F1; margin-right: 4px;"></i>
+                    <span>Default: <b class="clr-blue">admin</b> / <b class="clr-violet">admin</b></span>
+                </div>
+                <button type="button" class="quick-fill-btn" id="autoFillBtn">Auto Fill</button>
+            </div>
+
+            <div id="errorAlert" class="error-alert">Invalid credentials! Use: admin / admin</div>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <label>Username</label>
+                    <div class="input-box">
+                        <i class="fa-regular fa-user lead-icon"></i>
+                        <input type="text" id="username" placeholder="admin" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <div class="input-box">
+                        <i class="fa-solid fa-lock lead-icon"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <i class="fa-regular fa-eye-slash trailing-action" id="togglePassword"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    <span>Authenticate & Enter Hub</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== 2. MAIN APPLICATION WORKSPACE ==================== -->
+    <div id="dashboardView">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="brand-container">
+                    <div class="brand-symbol"><i class="fa-solid fa-layer-group"></i></div>
+                    <span class="brand-title">Korvesa<span>ERP</span></span>
+                </a>
+            </div>
+
+            <ul class="sidebar-menu">
+                <div class="menu-category menu-cat-control">Main Control</div>
+                <li>
+                    <a class="nav-link active" data-section="dashboardSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-gauge-high nav-icon-dash"></i><span>Dashboard</span></div>
+                    </a>
+                </li>
+
+                <div class="menu-category menu-cat-pos">POS & Mobile Purchasing</div>
+                <li>
+                    <a class="nav-link" data-section="purchasesSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-truck-ramp-box nav-icon-pur"></i><span>Purchases (Inward)</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-section="posSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-cash-register nav-icon-pos"></i><span>POS Terminal</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-section="mobileStockSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-mobile-screen-button nav-icon-mob"></i><span>Mobile Stock</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-section="imeiSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-barcode nav-icon-imei"></i><span>Dual IMEI Tracker</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-section="accessoriesSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-headphones nav-icon-acc"></i><span>Accessories</span></div>
+                    </a>
+                </li>
+
+                <div class="menu-category menu-cat-finance">Finance & Parties</div>
+                <li>
+                    <a class="nav-link" data-section="customersSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-users nav-icon-cust"></i><span>Customers (Ledger)</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-section="suppliersSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-building-user nav-icon-sup"></i><span>Suppliers & Ledger</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-section="accountsSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-wallet nav-icon-accs"></i><span>Accounts Ledger</span></div>
+                    </a>
+                </li>
+
+                <div class="menu-category menu-cat-sys">System</div>
+                <li>
+                    <a class="nav-link" data-section="reportsSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-chart-line nav-icon-rep"></i><span>Reports & P&L</span></div>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" data-section="settingsSection">
+                        <div class="nav-link-content"><i class="fa-solid fa-sliders nav-icon-set"></i><span>Settings Hub</span></div>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <div class="user-meta-group" style="display: flex; align-items: center; gap: 10px;">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="user-avatar-img">
+                    <div class="user-details">
+                        <h4 class="dynamic-username">Admin</h4>
+                        <p>Super Administrator</p>
+                    </div>
+                </div>
+                <button class="btn-icon-danger" id="logoutBtn" title="Logout"><i class="fa-solid fa-power-off"></i></button>
+            </div>
+        </aside>
+
+        <div class="main-wrapper" id="mainWrapper">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <div class="current-page-badge">
+                        <button class="btn-nav-dots" id="dotsToggleBtn" title="Toggle Navigation Menu">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+                        <span id="currentPageTitle">Executive Dashboard</span>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <div class="theme-selector-pill">
+                        <i class="fa-solid fa-palette"></i>
+                        <select id="topbarThemeSelect" class="theme-select-inline" onchange="setSystemTheme(this.value)">
+                            <option value="corporate">🏛️ Navy Corporate</option>
+                            <option value="dark">🌑 Obsidian Dark</option>
+                        </select>
+                    </div>
+
+                    <div class="stat-pill-branch">
+                        <i class="fa-solid fa-circle-dot"></i>
+                        <span id="activeBranchDisplay">Main Branch (Shop #1)</span>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content-container">
+
+                <!-- ==================== MODULE 1: DASHBOARD ==================== -->
+                <div id="dashboardSection" class="app-section active-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-primary">Business Overview (PKR)</h2>
+                            <p>Real-time metrics aggregated across POS, phone stock, supplier purchases, and financial ledger.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="openNewPurchaseModal()">
+                            <i class="fa-solid fa-plus"></i> Inward Mobile Purchase
+                        </button>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 22px;">
+                        <div class="card-box kpi-card kpi-card-sales" style="margin-bottom: 0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <i class="fa-solid fa-money-bill-trend-up clr-emerald" style="font-size: 24px;"></i>
+                                <span class="badge-status status-green">Gross Sales</span>
+                            </div>
+                            <h3 style="font-size: 24px; font-weight: 900;" class="clr-emerald" id="kpiGrossSales">Rs. 0</h3>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 600;">Total Completed Orders</p>
+                        </div>
+
+                        <div class="card-box kpi-card kpi-card-stock" style="margin-bottom: 0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <i class="fa-solid fa-mobile-screen-button clr-cyan" style="font-size: 24px;"></i>
+                                <span class="badge-status status-cyan">In-Stock Phones</span>
+                            </div>
+                            <h3 style="font-size: 24px; font-weight: 900;" class="clr-cyan" id="kpiMobileStock">0 Units</h3>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 600;">Active Tracked IMEI Units</p>
+                        </div>
+
+                        <div class="card-box kpi-card kpi-card-payables" style="margin-bottom: 0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <i class="fa-solid fa-building-columns clr-rose" style="font-size: 24px;"></i>
+                                <span class="badge-status status-rose">Supplier Payables</span>
+                            </div>
+                            <h3 style="font-size: 24px; font-weight: 900;" class="clr-rose" id="kpiPayables">Rs. 0</h3>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 600;">Pending Vendor Balances</p>
+                        </div>
+
+                        <div class="card-box kpi-card kpi-card-cash" style="margin-bottom: 0;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <i class="fa-solid fa-wallet clr-amber" style="font-size: 24px;"></i>
+                                <span class="badge-status status-amber">Liquid Cash</span>
+                            </div>
+                            <h3 style="font-size: 24px; font-weight: 900;" class="clr-amber" id="kpiCashBalance">Rs. 0</h3>
+                            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 600;">Drawer + Bank Balance</p>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1.8fr 1fr; gap: 20px; margin-bottom: 20px;">
+                        <div class="card-box">
+                            <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 14px;" class="clr-blue">Sales & Purchase Expenditure Trend (PKR)</h3>
+                            <div class="chart-wrapper-box">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="card-box">
+                            <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 14px;" class="clr-violet">Stock Valuation Mix</h3>
+                            <div class="chart-wrapper-box">
+                                <canvas id="trafficChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-box">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                            <h3 style="font-size: 16px; font-weight: 800; color: var(--text-heading);">Recent POS Completed Invoices</h3>
+                            <button class="quick-fill-btn" onclick="switchSection('reportsSection')">View All Ledger</button>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="erp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice #</th>
+                                        <th>Customer</th>
+                                        <th>Items Description</th>
+                                        <th>Payment Mode</th>
+                                        <th>Total Paid</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recentInvoicesTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 2: PURCHASES ==================== -->
+                <div id="purchasesSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-sunset">Mobile Purchases & Supplier Inward</h2>
+                            <p>Record stock intake with device images, dual IMEIs, PTA status, condition, and supplier ledger updates.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="openNewPurchaseModal()">
+                            <i class="fa-solid fa-plus"></i> Inward Mobile Purchase
+                        </button>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="table-responsive">
+                            <table class="erp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Purchase PO #</th>
+                                        <th>Date</th>
+                                        <th>Supplier</th>
+                                        <th>Device / Specs</th>
+                                        <th>IMEI 1 & 2</th>
+                                        <th>PTA / Condition</th>
+                                        <th>Cost</th>
+                                        <th>Paid / Due</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="purchasesTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 3: VISUAL POS TERMINAL ==================== -->
+                <div id="posSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-emerald">POS Checkout Terminal</h2>
+                            <p>Live retail checkout with Pakistani Rupees (Rs.), multi-channel payment, and customer ledger integration.</p>
+                        </div>
+                        <button class="quick-fill-btn" onclick="resetPosCart()">
+                            <i class="fa-solid fa-rotate-left"></i> Reset Cart
+                        </button>
+                    </div>
+
+                    <div class="pos-grid-layout">
+                        <!-- Left Catalog -->
+                        <div class="pos-catalog-card">
+                            <div class="pos-filter-bar">
+                                <input type="text" id="posSearchInput" class="pos-search-input" placeholder="Search phone, model, IMEI, PTA status, accessory..." oninput="renderPosCatalog()">
+                                <select id="posCategoryFilter" class="pos-search-input" style="flex: 0.5;" onchange="renderPosCatalog()">
+                                    <option value="ALL">All Categories</option>
+                                    <option value="MOBILE">Mobile Phones</option>
+                                    <option value="ACCESSORY">Accessories</option>
+                                </select>
+                            </div>
+                            <div class="pos-items-grid" id="posCatalogContainer"></div>
+                        </div>
+
+                        <!-- Right Cart & Checkout -->
+                        <div class="pos-cart-panel">
+                            <div style="margin-bottom: 14px;">
+                                <div class="pos-section-label">
+                                    <span><i class="fa-solid fa-user-tag clr-blue"></i> Customer Account</span>
+                                    <button type="button" class="quick-fill-btn" style="padding: 2px 8px; font-size: 11px;" onclick="openModal('addCustomerModal')"><i class="fa-solid fa-plus"></i> New</button>
+                                </div>
+                                <select id="posCustomerSelect" class="pos-select-box" onchange="updatePosSummary()"></select>
+                            </div>
+
+                            <div style="max-height: 200px; overflow-y: auto; margin-bottom: 12px;">
+                                <table class="cart-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Qty</th>
+                                            <th>Price</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="posCartTableBody"></tbody>
+                                </table>
+                            </div>
+
+                            <div class="cart-summary">
+                                <div class="summary-row">
+                                    <span style="color: var(--text-muted);">Subtotal:</span>
+                                    <span id="posSubtotal" class="clr-blue" style="font-weight: 800;">Rs. 0</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span style="color: var(--text-muted);">Tax / GST (<span id="posTaxRateLabel" class="clr-violet">0</span>%):</span>
+                                    <span id="posTaxAmount" class="clr-violet" style="font-weight: 800;">Rs. 0</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span style="color: var(--text-muted);">Discount (Rs.):</span>
+                                    <input type="number" id="posDiscountInput" value="0" min="0" class="pos-discount-input" oninput="updatePosSummary()">
+                                </div>
+                                <div class="summary-row total">
+                                    <span>Net Payable:</span>
+                                    <span id="posNetTotal" class="clr-emerald" style="font-size: 18px; font-weight: 900;">Rs. 0</span>
+                                </div>
+                            </div>
+
+                            <div style="margin-bottom: 16px;">
+                                <div class="pos-section-label">
+                                    <span><i class="fa-solid fa-credit-card clr-emerald"></i> Payment Method</span>
+                                </div>
+                                <select id="posPaymentMode" class="pos-select-box">
+                                    <option value="Cash on Counter">💵 Cash on Counter</option>
+                                    <option value="JazzCash">📱 JazzCash (Mobile Account)</option>
+                                    <option value="EasyPaisa">📱 EasyPaisa (Mobile Account)</option>
+                                    <option value="Bank POS / Card">💳 Bank Card POS / Raast (Bank Transfer)</option>
+                                    <option value="Customer Credit">📒 Customer Credit / Ledger</option>
+                                </select>
+                            </div>
+
+                            <button class="btn-primary" style="margin-top: 0;" onclick="completePosCheckout()">
+                                <i class="fa-solid fa-check-circle"></i> Complete Sale & Print Bill (PKR)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 4: MOBILE STOCK ==================== -->
+                <div id="mobileStockSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-violet">Smartphones Active Stock</h2>
+                            <p>Real-time phone inventory with device photos, Dual IMEI, PTA status, cost and retail rates in PKR.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="openNewPurchaseModal()">
+                            <i class="fa-solid fa-truck-ramp-box"></i> Inward New Purchase
+                        </button>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="table-responsive">
+                            <table class="erp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Device / Photo</th>
+                                        <th>Specs (RAM/ROM)</th>
+                                        <th>Color & Condition</th>
+                                        <th>Dual IMEI / SN</th>
+                                        <th>PTA Status</th>
+                                        <th>Cost (PKR)</th>
+                                        <th>Retail Price (PKR)</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mobileStockTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 5: DUAL IMEI TRACKER ==================== -->
+                <div id="imeiSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-sunset">Dual IMEI & Serial Lifecycle Audit</h2>
+                            <p>Audit trail from supplier purchase invoice to counter sales receipt and supplier returns.</p>
+                        </div>
+                        <input type="text" id="imeiSearchBox" class="pos-search-input" placeholder="Scan or search 15-digit IMEI 1 or 2..." style="max-width: 320px;" oninput="refreshAllViews()">
+                    </div>
+
+                    <div class="card-box">
+                        <div class="table-responsive">
+                            <table class="erp-table">
+                                <thead>
+                                    <tr>
+                                        <th>IMEI 1 / IMEI 2</th>
+                                        <th>Serial No</th>
+                                        <th>Model / Spec</th>
+                                        <th>PTA & Condition</th>
+                                        <th>Inward PO #</th>
+                                        <th>Sold Invoice #</th>
+                                        <th>Current Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="imeiTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 6: ACCESSORIES ==================== -->
+                <div id="accessoriesSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-primary">Accessories & Peripherals</h2>
+                            <p>Fast chargers, AirPods, screen guards, and cables with PKR pricing.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="openModal('addAccessoryModal')">
+                            <i class="fa-solid fa-plus"></i> Add Accessory
+                        </button>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="table-responsive">
+                            <table class="erp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Accessory / Photo</th>
+                                        <th>SKU / Barcode</th>
+                                        <th>Stock Units</th>
+                                        <th>Cost Price</th>
+                                        <th>Retail Price</th>
+                                        <th>Stock Health</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="accessoriesTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 7: CUSTOMERS CRM ==================== -->
+                <div id="customersSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-emerald">Customer Accounts & Credit Ledger</h2>
+                            <p>Track client contact records, outstanding ledger credit balances in PKR, and credit limits.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="openModal('addCustomerModal')">
+                            <i class="fa-solid fa-user-plus"></i> Register Customer
+                        </button>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="table-responsive">
+                            <table class="erp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Name</th>
+                                        <th>Phone Number</th>
+                                        <th>Total Invoices</th>
+                                        <th>Credit Balance (Due)</th>
+                                        <th>Credit Limit</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customersTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 8: SUPPLIERS & LEDGER ==================== -->
+                <div id="suppliersSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-sunset">Supplier & Vendor Directory</h2>
+                            <p>Wholesalers, distributors, previous balances, and payment settlements in PKR.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="openModal('addSupplierModal')">
+                            <i class="fa-solid fa-plus"></i> Add Supplier
+                        </button>
+                    </div>
+
+                    <div class="card-box">
+                        <div class="table-responsive">
+                            <table class="erp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Supplier / Company</th>
+                                        <th>Contact Person</th>
+                                        <th>Phone & Address</th>
+                                        <th>Outstanding Payable</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="suppliersTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 9: ACCOUNTS LEDGER ==================== -->
+                <div id="accountsSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-primary">Accounts Ledger & Financial Balances</h2>
+                            <p>Cash on counter, Bank accounts, JazzCash, EasyPaisa, and Master Journal in PKR.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="openModal('expenseModal')">
+                            <i class="fa-solid fa-receipt"></i> Post Shop Expense
+                        </button>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 20px;">
+                        <div class="card-box kpi-card kpi-card-cash" style="margin-bottom: 0;">
+                            <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 800; letter-spacing: 0.5px;">CASH DRAWER</span>
+                            <h3 style="font-size: 24px; font-weight: 900; margin-top: 4px;" class="clr-emerald" id="accCashBalance">Rs. 0</h3>
+                        </div>
+                        <div class="card-box kpi-card kpi-card-stock" style="margin-bottom: 0;">
+                            <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 800; letter-spacing: 0.5px;">BANK ALFALAH / MEEZAN</span>
+                            <h3 style="font-size: 24px; font-weight: 900; margin-top: 4px;" class="clr-blue" id="accBankBalance">Rs. 0</h3>
+                        </div>
+                        <div class="card-box kpi-card kpi-card-payables" style="margin-bottom: 0;">
+                            <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 800; letter-spacing: 0.5px;">JAZZCASH / EASYPAISA</span>
+                            <h3 style="font-size: 24px; font-weight: 900; margin-top: 4px;" class="clr-amber" id="accWalletBalance">Rs. 0</h3>
+                        </div>
+                        <div class="card-box kpi-card kpi-card-payables" style="margin-bottom: 0; border-top-color: #F43F5E;">
+                            <span style="font-size: 11.5px; color: var(--text-muted); font-weight: 800; letter-spacing: 0.5px;">SUPPLIER PAYABLES</span>
+                            <h3 style="font-size: 24px; font-weight: 900; margin-top: 4px;" class="clr-rose" id="accPayablesBalance">Rs. 0</h3>
+                        </div>
+                    </div>
+
+                    <div class="card-box">
+                        <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 14px;" class="clr-violet">Master Journal Activity Log (PKR)</h3>
+                        <div class="table-responsive">
+                            <table class="erp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Date/Time</th>
+                                        <th>Account Channel</th>
+                                        <th>Type</th>
+                                        <th>Reference Details</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="journalTableBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 10: REPORTS ==================== -->
+                <div id="reportsSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-emerald">Profit & Loss and Tax Audits (PKR)</h2>
+                            <p>Real-time calculation derived from gross sales revenue minus cost-of-goods and operating expenses.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="exportDataToCsv()">
+                            <i class="fa-solid fa-file-csv"></i> Export Sales CSV
+                        </button>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 20px;">
+                        <div class="card-box kpi-card kpi-card-stock" style="margin-bottom: 0;">
+                            <span style="font-size: 11.5px; font-weight: 800; color: var(--text-muted);">GROSS SALES REVENUE</span>
+                            <h3 style="font-size: 24px; font-weight: 900; margin-top: 4px;" class="clr-blue" id="repGrossSales">Rs. 0</h3>
+                        </div>
+                        <div class="card-box kpi-card kpi-card-payables" style="margin-bottom: 0;">
+                            <span style="font-size: 11.5px; font-weight: 800; color: var(--text-muted);">COST OF GOODS SOLD (COGS)</span>
+                            <h3 style="font-size: 24px; font-weight: 900; margin-top: 4px;" class="clr-rose" id="repCostGoods">Rs. 0</h3>
+                        </div>
+                        <div class="card-box kpi-card kpi-card-cash" style="margin-bottom: 0;">
+                            <span style="font-size: 11.5px; font-weight: 800; color: var(--text-muted);">SHOP EXPENSES</span>
+                            <h3 style="font-size: 24px; font-weight: 900; margin-top: 4px;" class="clr-amber" id="repExpenses">Rs. 0</h3>
+                        </div>
+                        <div class="card-box kpi-card kpi-card-sales" style="margin-bottom: 0;">
+                            <span style="font-size: 11.5px; font-weight: 800; color: var(--text-muted);">NET PROFIT</span>
+                            <h3 style="font-size: 24px; font-weight: 900; margin-top: 4px;" class="clr-emerald" id="repNetProfit">Rs. 0</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ==================== MODULE 11: SETTINGS ==================== -->
+                <div id="settingsSection" class="app-section">
+                    <div class="page-header">
+                        <div class="page-title">
+                            <h2 class="text-grad-primary">Enterprise System Settings</h2>
+                            <p>Configure themes, tax rates (FBR/GST), printer slips, and company information.</p>
+                        </div>
+                        <button class="btn-action-primary" onclick="saveEnterpriseSettings()">
+                            <i class="fa-solid fa-floppy-disk"></i> Save & Apply Settings
+                        </button>
+                    </div>
+
+                    <div class="settings-layout">
+                        <div class="settings-menu-card">
+                            <ul class="settings-menu-list">
+                                <li><button class="settings-tab-btn active-tab" data-pane="themeAppearancePane"><i class="fa-solid fa-palette" style="color:#EC4899;"></i> Theme & Appearance</button></li>
+                                <li><button class="settings-tab-btn" data-pane="companyProfilePane"><i class="fa-solid fa-building" style="color:#3B82F6;"></i> Company Profile</button></li>
+                                <li><button class="settings-tab-btn" data-pane="branchManagementPane"><i class="fa-solid fa-shop" style="color:#10B981;"></i> Branch Setup</button></li>
+                                <li><button class="settings-tab-btn" data-pane="invoiceSettingsPane"><i class="fa-solid fa-file-invoice" style="color:#F59E0B;"></i> Invoice Setup</button></li>
+                                <li><button class="settings-tab-btn" data-pane="taxSettingsPane"><i class="fa-solid fa-percent" style="color:#8B5CF6;"></i> Tax & GST Rate</button></li>
+                                <li><button class="settings-tab-btn" data-pane="paymentMethodsPane"><i class="fa-solid fa-credit-card" style="color:#06B6D4;"></i> Payment Channels</button></li>
+                                <li><button class="settings-tab-btn" data-pane="backupRestorePane"><i class="fa-solid fa-cloud-arrow-up" style="color:#14B8A6;"></i> Backup & Cloud</button></li>
+                                <li><button class="settings-tab-btn" data-pane="databaseSettingsPane"><i class="fa-solid fa-database" style="color:#F43F5E;"></i> Clean Database</button></li>
+                            </ul>
+                        </div>
+
+                        <div class="settings-content-card">
+                            <div class="settings-pane active-pane" id="themeAppearancePane">
+                                <div class="pane-header">
+                                    <h3 class="clr-blue">Visual Theme & Appearance</h3>
+                                    <p>Select your interface appearance theme.</p>
+                                </div>
+
+                                <div class="theme-cards-grid">
+                                    <div class="theme-card active-theme-card" id="themeCard-corporate" onclick="setSystemTheme('corporate')">
+                                        <div class="theme-preview-box" style="background: #F1F5FA;">
+                                            <div style="width: 32%; background: #0B1120; border-right: 1px solid #1E294B;"></div>
+                                            <div style="flex: 1; padding: 6px; display: flex; flex-direction: column; gap: 4px; background: #ffffff;">
+                                                <div style="height: 8px; width: 60%; background: #3B82F6; border-radius: 2px;"></div>
+                                                <div style="height: 6px; width: 80%; background: #CBD5E1; border-radius: 2px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="theme-card-header">
+                                            <h4>🏛️ Navy Corporate</h4>
+                                            <i class="fa-solid fa-circle-check clr-blue"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="theme-card" id="themeCard-dark" onclick="setSystemTheme('dark')">
+                                        <div class="theme-preview-box" style="background: #0A0E1A;">
+                                            <div style="width: 32%; background: #070B14; border-right: 1px solid #2D3748;"></div>
+                                            <div style="flex: 1; padding: 6px; display: flex; flex-direction: column; gap: 4px; background: #111827;">
+                                                <div style="height: 8px; width: 60%; background: #60A5FA; border-radius: 2px;"></div>
+                                                <div style="height: 6px; width: 80%; background: #4B5563; border-radius: 2px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="theme-card-header">
+                                            <h4>🌑 Obsidian Dark</h4>
+                                            <i class="fa-regular fa-moon clr-cyan"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="settings-pane" id="companyProfilePane">
+                                <div class="pane-header">
+                                    <h3 class="clr-blue">Company Profile & Legal Information</h3>
+                                </div>
+                                <div class="form-grid-2">
+                                    <div class="form-field">
+                                        <label>Enterprise Shop / Company Name</label>
+                                        <input type="text" id="setCompanyName" value="Korvesa Mobile ERP Solution">
+                                    </div>
+                                    <div class="form-field">
+                                        <label>Official Email</label>
+                                        <input type="email" id="setCompanyEmail" value="info@korvesa.com">
+                                    </div>
+                                </div>
+                                <div class="form-grid-2">
+                                    <div class="form-field">
+                                        <label>NTN / STRN Tax Number</label>
+                                        <input type="text" id="setCompanyNtn" value="">
+                                    </div>
+                                    <div class="form-field">
+                                        <label>Official Phone Number</label>
+                                        <input type="text" id="setCompanyPhone" value="">
+                                    </div>
+                                </div>
+                                <div class="form-field">
+                                    <label>Head Office Address</label>
+                                    <textarea id="setCompanyAddress" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="settings-pane" id="branchManagementPane">
+                                <div class="pane-header"><h3 class="clr-emerald">Branch Setup</h3></div>
+                                <div class="form-field">
+                                    <label>Active Working Branch</label>
+                                    <select id="setActiveBranch" class="form-control">
+                                        <option value="Main Branch (Shop #1)">Main Branch (Shop #1)</option>
+                                        <option value="Warehouse">Warehouse</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="settings-pane" id="invoiceSettingsPane">
+                                <div class="pane-header"><h3 class="clr-amber">Invoice & Thermal Slip Setup</h3></div>
+                                <div class="form-grid-2">
+                                    <div class="form-field">
+                                        <label>Sales Invoice Prefix</label>
+                                        <input type="text" id="setInvoicePrefix" value="INV-">
+                                    </div>
+                                    <div class="form-field">
+                                        <label>Purchase Invoice Prefix</label>
+                                        <input type="text" id="setPurchasePrefix" value="PO-">
+                                    </div>
+                                </div>
+                                <div class="form-field">
+                                    <label>Invoice Footer Terms</label>
+                                    <textarea id="setInvoiceFooter" rows="2">No return without original invoice. PTA status guaranteed as mentioned on receipt.</textarea>
+                                </div>
+                            </div>
+
+                            <div class="settings-pane" id="taxSettingsPane">
+                                <div class="pane-header"><h3 class="clr-violet">Tax & GST Configuration</h3></div>
+                                <div class="form-field">
+                                    <label>Standard FBR / Sales Tax Rate (%)</label>
+                                    <input type="number" id="setGstRate" value="0">
+                                </div>
+                            </div>
+
+                            <div class="settings-pane" id="paymentMethodsPane">
+                                <div class="pane-header"><h3 class="clr-cyan">Active Payment Channels (Pakistan)</h3></div>
+                                <div class="switch-row"><div class="switch-info"><h4 class="clr-emerald">Cash on Counter</h4></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                                <div class="switch-row"><div class="switch-info"><h4 class="clr-rose">JazzCash Merchant QR</h4></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                                <div class="switch-row"><div class="switch-info"><h4 class="clr-emerald">EasyPaisa Till ID</h4></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                                <div class="switch-row"><div class="switch-info"><h4 class="clr-blue">Bank Transfer / Raast / Card</h4></div><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+                            </div>
+
+                            <div class="settings-pane" id="backupRestorePane">
+                                <div class="pane-header"><h3 class="clr-emerald">Backup & Archival</h3></div>
+                                <button class="btn-action-primary" onclick="downloadBackupJson()"><i class="fa-solid fa-download"></i> Download ERP JSON State Backup</button>
+                            </div>
+
+                            <div class="settings-pane" id="databaseSettingsPane">
+                                <div class="pane-header"><h3 class="clr-rose">Database Engine</h3></div>
+                                <button class="btn-action-primary" style="background: var(--clr-rose);" onclick="resetAllDemoData()"><i class="fa-solid fa-trash-can"></i> Clear All Data (Reset to Fresh State)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal: INWARD MOBILE PURCHASE -->
+    <div id="purchaseModal" class="erp-modal-overlay">
+        <div class="erp-modal erp-modal-lg">
+            <div class="modal-header">
+                <h3 class="text-grad-primary"><i class="fa-solid fa-truck-ramp-box clr-blue"></i> Inward Mobile Purchase & Stock Intake (PKR)</h3>
+                <button class="btn-modal-close" onclick="closeModal('purchaseModal')">&times;</button>
+            </div>
+            
+            <form id="mobilePurchaseForm">
+                <div class="section-separator"><i class="fa-solid fa-camera clr-cyan"></i> 1. Mobile Photo / Device Image</div>
+                <div class="image-upload-wrapper">
+                    <div class="img-preview-box" id="pMobileImgPreview">
+                        <i class="fa-solid fa-image" style="font-size: 20px;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="display:block; font-size:12.5px; font-weight:800; margin-bottom:3px;" class="clr-blue">Upload Smartphone Image (Shown in POS)</label>
+                        <input type="file" id="pMobileImageInput" accept="image/*" onchange="previewImageInput(this, 'pMobileImgPreview')">
+                    </div>
+                </div>
+
+                <div class="section-separator"><i class="fa-solid fa-file-invoice clr-emerald"></i> 2. Purchase Invoice & Supplier Details</div>
+                
+                <div class="form-grid-3">
+                    <div class="form-field">
+                        <label>Purchase Invoice #</label>
+                        <input type="text" id="pInvoiceNo" readonly style="font-weight: 800;" class="clr-blue">
+                    </div>
+                    <div class="form-field">
+                        <label>Purchase Date & Time</label>
+                        <input type="datetime-local" id="pDate" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Supplier Reference / Bill #</label>
+                        <input type="text" id="pSupplierRef" placeholder="e.g. BILL-1001" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-field">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <label style="margin: 0;">Supplier / Vendor Name</label>
+                            <a href="javascript:void(0)" onclick="closeModal('purchaseModal'); openModal('addSupplierModal');" style="font-size: 11px; font-weight: 800; color: var(--text-accent-blue);">+ Add New Supplier</a>
+                        </div>
+                        <select id="pSupplierSelect" class="form-control" onchange="onSupplierChange()" required></select>
+                    </div>
+                    <div class="form-field">
+                        <label>Supplier Ledger Balance</label>
+                        <input type="text" id="pSupplierPrevBalance" readonly style="font-weight: 800;" class="clr-rose">
+                    </div>
+                </div>
+
+                <div class="section-separator"><i class="fa-solid fa-mobile-screen-button clr-violet"></i> 3. Mobile Specifications & Hardware Identification</div>
+                
+                <div class="form-grid-3">
+                    <div class="form-field">
+                        <label>Brand</label>
+                        <input type="text" id="pBrand" placeholder="e.g. Apple / Samsung / Xiaomi" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Model Name</label>
+                        <input type="text" id="pModel" placeholder="e.g. iPhone 15 Pro / Galaxy S24" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Color</label>
+                        <input type="text" id="pColor" placeholder="e.g. Black / Titanium" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-4">
+                    <div class="form-field">
+                        <label>RAM (GB)</label>
+                        <select id="pRam" class="form-control">
+                            <option value="4GB">4 GB</option>
+                            <option value="6GB">6 GB</option>
+                            <option value="8GB" selected>8 GB</option>
+                            <option value="12GB">12 GB</option>
+                            <option value="16GB">16 GB</option>
+                            <option value="N/A">N/A (iOS)</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Storage (ROM)</label>
+                        <select id="pStorage" class="form-control">
+                            <option value="64GB">64 GB</option>
+                            <option value="128GB" selected>128 GB</option>
+                            <option value="256GB">256 GB</option>
+                            <option value="512GB">512 GB</option>
+                            <option value="1TB">1 TB</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>PTA Status</label>
+                        <select id="pPtaStatus" class="form-control">
+                            <option value="PTA Approved">PTA Approved</option>
+                            <option value="Non-PTA / JV">Non-PTA / JV</option>
+                            <option value="Custom Duty Paid">Custom Duty Paid</option>
+                            <option value="Sim-Locked (Carrier)">Sim-Locked (Carrier)</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Condition</label>
+                        <select id="pCondition" class="form-control">
+                            <option value="Brand New (Box Pack)">Brand New (Box Pack)</option>
+                            <option value="Used / Grade-A">Used / Grade-A</option>
+                            <option value="Used / Grade-B">Used / Grade-B</option>
+                            <option value="Refurbished">Refurbished</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-grid-3">
+                    <div class="form-field">
+                        <label>IMEI 1 (Primary)</label>
+                        <input type="text" id="pImei1" placeholder="15 Digit IMEI" maxlength="16" required>
+                    </div>
+                    <div class="form-field">
+                        <label>IMEI 2 (Secondary / eSIM)</label>
+                        <input type="text" id="pImei2" placeholder="15 Digit IMEI (Optional)" maxlength="16">
+                    </div>
+                    <div class="form-field">
+                        <label>Serial Number (S/N)</label>
+                        <input type="text" id="pSerialNo" placeholder="Serial No." required>
+                    </div>
+                </div>
+
+                <div class="section-separator"><i class="fa-solid fa-coins clr-amber"></i> 4. Price & Cost in Pakistani Rupees (PKR)</div>
+                
+                <div class="form-grid-4">
+                    <div class="form-field">
+                        <label>Purchase Unit Cost (Rs.)</label>
+                        <input type="number" id="pUnitCost" placeholder="0" min="1" oninput="calculatePurchaseTotals()" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Quantity</label>
+                        <input type="number" id="pQty" value="1" min="1" readonly style="opacity: 0.8;">
+                    </div>
+                    <div class="form-field">
+                        <label>Discount (Rs.)</label>
+                        <input type="number" id="pDiscount" value="0" min="0" oninput="calculatePurchaseTotals()">
+                    </div>
+                    <div class="form-field">
+                        <label>Tax / FBR (Rs.)</label>
+                        <input type="number" id="pTax" value="0" min="0" oninput="calculatePurchaseTotals()">
+                    </div>
+                </div>
+
+                <div class="form-grid-2">
+                    <div class="form-field">
+                        <label>Total Purchase Bill Amount (Rs.)</label>
+                        <input type="number" id="pTotalAmount" readonly style="font-weight: 900; font-size: 16px;" class="clr-blue">
+                    </div>
+                    <div class="form-field">
+                        <label>Retail Selling Price (Rs.)</label>
+                        <input type="number" id="pRetailPrice" placeholder="0" style="font-weight: 800;" class="clr-emerald" required>
+                    </div>
+                </div>
+
+                <div class="section-separator"><i class="fa-solid fa-credit-card clr-rose"></i> 5. Payment Settlement & Channels</div>
+
+                <div class="form-grid-3">
+                    <div class="form-field">
+                        <label>Paid Amount (Rs.)</label>
+                        <input type="number" id="pPaidAmount" placeholder="0" oninput="calculatePurchaseTotals()" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Remaining Due Balance (Rs.)</label>
+                        <input type="text" id="pRemainingAmount" readonly style="font-weight: 900;" class="clr-rose">
+                    </div>
+                    <div class="form-field">
+                        <label>Payment Channel</label>
+                        <select id="pPaymentMethod" class="form-control">
+                            <option value="Cash on Counter">Cash on Counter</option>
+                            <option value="Bank Transfer">Bank Alfalah / Meezan</option>
+                            <option value="JazzCash">JazzCash</option>
+                            <option value="EasyPaisa">EasyPaisa</option>
+                            <option value="Full Credit (Unpaid)">Full Supplier Credit (Unpaid)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-top: 18px;">
+                    <button type="submit" class="btn-primary" style="flex: 2;"><i class="fa-solid fa-floppy-disk"></i> Save Purchase & Add to Stock (PKR)</button>
+                    <button type="button" class="quick-fill-btn" style="flex: 1; padding: 10px;" onclick="closeModal('purchaseModal')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: ADD ACCESSORY -->
+    <div id="addAccessoryModal" class="erp-modal-overlay">
+        <div class="erp-modal">
+            <div class="modal-header">
+                <h3 class="text-grad-primary">Add Accessory Item (PKR)</h3>
+                <button class="btn-modal-close" onclick="closeModal('addAccessoryModal')">&times;</button>
+            </div>
+            <form id="addAccessoryForm">
+                <div class="image-upload-wrapper">
+                    <div class="img-preview-box" id="accImgPreview">
+                        <i class="fa-solid fa-headphones clr-violet" style="font-size: 20px;"></i>
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="display:block; font-size:12.5px; font-weight:800; margin-bottom:3px;" class="clr-violet">Accessory Photo</label>
+                        <input type="file" id="accImageInput" accept="image/*" onchange="previewImageInput(this, 'accImgPreview')">
+                    </div>
+                </div>
+
+                <div class="form-field"><label>Item Name</label><input type="text" id="accName" placeholder="e.g. 25W Fast Adapter" required></div>
+                <div class="form-grid-2">
+                    <div class="form-field"><label>SKU / Barcode</label><input type="text" id="accSku" placeholder="e.g. ACC-001" required></div>
+                    <div class="form-field"><label>Initial Stock Qty</label><input type="number" id="accQty" placeholder="10" required></div>
+                </div>
+                <div class="form-grid-2">
+                    <div class="form-field"><label>Cost Price (Rs.)</label><input type="number" id="accCost" placeholder="0" required></div>
+                    <div class="form-field"><label>Retail Price (Rs.)</label><input type="number" id="accPrice" placeholder="0" class="clr-emerald" style="font-weight: 800;" required></div>
+                </div>
+                <button type="submit" class="btn-primary">Save Accessory</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Register Customer -->
+    <div id="addCustomerModal" class="erp-modal-overlay">
+        <div class="erp-modal">
+            <div class="modal-header">
+                <h3 class="text-grad-emerald">Register New Customer</h3>
+                <button class="btn-modal-close" onclick="closeModal('addCustomerModal')">&times;</button>
+            </div>
+            <form id="addCustomerForm">
+                <div class="form-field"><label>Customer Name</label><input type="text" id="custName" placeholder="Customer Name" required></div>
+                <div class="form-grid-2">
+                    <div class="form-field"><label>Phone Number</label><input type="text" id="custPhone" placeholder="03XXXXXXXXX" required></div>
+                    <div class="form-field"><label>Credit Line Limit (Rs.)</label><input type="number" id="custLimit" value="0" class="clr-violet" style="font-weight: 800;" required></div>
+                </div>
+                <button type="submit" class="btn-primary">Register Customer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Add Supplier -->
+    <div id="addSupplierModal" class="erp-modal-overlay">
+        <div class="erp-modal">
+            <div class="modal-header">
+                <h3 class="text-grad-sunset">Add Supplier Vendor</h3>
+                <button class="btn-modal-close" onclick="closeModal('addSupplierModal')">&times;</button>
+            </div>
+            <form id="addSupplierForm">
+                <div class="form-field"><label>Company / Vendor Name</label><input type="text" id="supName" placeholder="Vendor / Supplier Business Name" required></div>
+                <div class="form-grid-2">
+                    <div class="form-field"><label>Contact Person</label><input type="text" id="supPerson" placeholder="Person Name" required></div>
+                    <div class="form-field"><label>Phone Number</label><input type="text" id="supPhone" placeholder="Phone Number" required></div>
+                </div>
+                <div class="form-field"><label>Physical Address</label><input type="text" id="supAddress" placeholder="Shop / Market Address" required></div>
+                <button type="submit" class="btn-primary">Save Supplier</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Post Expense -->
+    <div id="expenseModal" class="erp-modal-overlay">
+        <div class="erp-modal">
+            <div class="modal-header">
+                <h3 class="text-grad-sunset">Record Operating Expense</h3>
+                <button class="btn-modal-close" onclick="closeModal('expenseModal')">&times;</button>
+            </div>
+            <form id="expenseForm">
+                <div class="form-field"><label>Expense Title / Description</label><input type="text" id="expTitle" placeholder="e.g. Shop Rent / Utility Bill" required></div>
+                <div class="form-grid-2">
+                    <div class="form-field"><label>Amount (Rs.)</label><input type="number" id="expAmount" placeholder="0" class="clr-rose" style="font-weight: 800;" required></div>
+                    <div class="form-field">
+                        <label>Paid From Channel</label>
+                        <select id="expChannel" class="form-control">
+                            <option value="Cash">Cash Drawer</option>
+                            <option value="Bank">Bank Alfalah</option>
+                            <option value="JazzCash">JazzCash</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Record Expense</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Purchase Slip Preview -->
+    <div id="purchaseInvoiceModal" class="erp-modal-overlay">
+        <div class="erp-modal" style="max-width: 440px;">
+            <div class="modal-header">
+                <h3 class="clr-blue"><i class="fa-solid fa-receipt"></i> Inward Purchase Slip</h3>
+                <button class="btn-modal-close" onclick="closeModal('purchaseInvoiceModal')">&times;</button>
+            </div>
+            <div class="thermal-receipt" id="purchaseReceiptContent"></div>
+            <div style="display: flex; gap: 10px; margin-top: 16px;">
+                <button class="btn-action-primary" style="flex: 1;" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Slip</button>
+                <button class="quick-fill-btn" style="flex: 1;" onclick="closeModal('purchaseInvoiceModal')">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: POS Sales Receipt -->
+    <div id="invoiceModal" class="erp-modal-overlay">
+        <div class="erp-modal" style="max-width: 380px;">
+            <div class="modal-header">
+                <h3 class="clr-emerald"><i class="fa-solid fa-receipt"></i> Thermal Slip Preview (PKR)</h3>
+                <button class="btn-modal-close" onclick="closeModal('invoiceModal')">&times;</button>
+            </div>
+            <div class="thermal-receipt" id="printableReceipt"></div>
+            <div style="display: flex; gap: 10px; margin-top: 16px;">
+                <button class="btn-action-primary" style="flex: 1;" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Slip</button>
+                <button class="quick-fill-btn" style="flex: 1;" onclick="closeModal('invoiceModal')">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        const DEFAULT_PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect width='14' height='20' x='5' y='2' rx='2' ry='2'/%3E%3Cpath d='M12 18h.01'/%3E%3C/svg%3E";
+
+        // KORVESA MOBILE ERP SOLUTION - INITIAL ZERO-DATA STATE
+        const DEFAULT_STATE = {
+            theme: "corporate",
+            settings: {
+                companyName: "Korvesa Mobile ERP Solution",
+                companyEmail: "info@korvesa.com",
+                companyPhone: "",
+                companyNtn: "",
+                companyAddress: "",
+                activeBranch: "Main Branch (Shop #1)",
+                invoicePrefix: "INV-",
+                purchasePrefix: "PO-",
+                printImei: "Yes",
+                invoiceFooter: "No return without original invoice. PTA status guaranteed as stated at purchase.",
+                gstRate: 0,
+                lowStockThreshold: 3,
+                maxDiscount: 25000
+            },
+            suppliers: [],
+            mobiles: [],
+            accessories: [],
+            purchases: [],
+            customers: [],
+            invoices: [],
+            journal: [],
+            expenses: [],
+            cashBalance: 0
+        };
+
+        const STORAGE_KEY = 'KORVESA_MOBILE_ERP_STORAGE_V1';
+        let STATE = JSON.parse(localStorage.getItem(STORAGE_KEY)) || DEFAULT_STATE;
+        let posCart = [];
+        let revenueChartInstance = null;
+        let trafficChartInstance = null;
+
+        setSystemTheme(STATE.theme || 'corporate', false);
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+            refreshAllViews();
+        }
+
+        function triggerToast(msg) {
+            const toast = document.getElementById('toastNotification');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2800);
+        }
+
+        function formatPKR(amount) {
+            return `Rs. ${(amount || 0).toLocaleString('en-PK')}`;
+        }
+
+        function getBase64Image(fileInput) {
+            return new Promise((resolve) => {
+                const file = fileInput.files && fileInput.files[0];
+                if (!file) {
+                    resolve(null);
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => resolve(e.target.result);
+                reader.onerror = () => resolve(null);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function previewImageInput(input, previewContainerId) {
+            const previewBox = document.getElementById(previewContainerId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewBox.innerHTML = `<img src="${e.target.result}" alt="Preview">`;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function setSystemTheme(themeName, showToast = true) {
+            if (!['corporate', 'dark', 'light'].includes(themeName)) themeName = 'corporate';
+            
+            document.documentElement.setAttribute('data-theme', themeName);
+            STATE.theme = themeName;
+            
+            const topbarSelect = document.getElementById('topbarThemeSelect');
+            if (topbarSelect) topbarSelect.value = (themeName === 'light' || themeName === 'corporate') ? 'corporate' : 'dark';
+
+            document.querySelectorAll('.theme-card').forEach(card => card.classList.remove('active-theme-card'));
+            const activeCard = document.getElementById(`themeCard-${themeName}`);
+            if (activeCard) activeCard.classList.add('active-theme-card');
+
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+
+            if (showToast) {
+                const names = { corporate: '🏛️ Navy Corporate', dark: '🌑 Obsidian Dark', light: '🏛️ Navy Corporate' };
+                triggerToast(`Theme switched to ${names[themeName] || 'Navy Corporate'}`);
+            }
+
+            if (revenueChartInstance && trafficChartInstance) updateChartsTheme();
+        }
+
+        // Authentication
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = document.getElementById('username').value.trim().toLowerCase();
+            const p = document.getElementById('password').value.trim();
+            if (u === 'admin' && p === 'admin') {
+                document.getElementById('loginView').style.display = 'none';
+                document.getElementById('dashboardView').style.display = 'block';
+                initCharts();
+                refreshAllViews();
+                triggerToast('Korvesa Mobile ERP Solution Ready');
+            } else {
+                document.getElementById('errorAlert').style.display = 'block';
+            }
+        });
+
+        document.getElementById('autoFillBtn').addEventListener('click', () => {
+            document.getElementById('username').value = 'admin';
+            document.getElementById('password').value = 'admin';
+        });
+
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passInput = document.getElementById('password');
+            const isPass = passInput.type === 'password';
+            passInput.type = isPass ? 'text' : 'password';
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            document.getElementById('dashboardView').style.display = 'none';
+            document.getElementById('loginView').style.display = 'flex';
+        });
+
+        document.querySelectorAll('.sidebar-menu .nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.sidebar-menu .nav-link').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                const target = this.getAttribute('data-section');
+                switchSection(target);
+                if (window.innerWidth <= 1024) closeSidebar();
+            });
+        });
+
+        function switchSection(sectionId) {
+            document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active-section'));
+            const active = document.getElementById(sectionId);
+            if (active) active.classList.add('active-section');
+            
+            const titleMap = {
+                dashboardSection: "Executive Dashboard",
+                purchasesSection: "Mobile Purchases & Inward Orders",
+                posSection: "POS Terminal & Visual Catalog (PKR)",
+                mobileStockSection: "Smartphones Inventory (Dual IMEI)",
+                imeiSection: "Dual IMEI & Serial Lifecycle",
+                accessoriesSection: "Accessories & Peripherals",
+                customersSection: "Customer CRM & Credit",
+                suppliersSection: "Supplier Directory & Ledger",
+                accountsSection: "Accounts & Financial Balances",
+                reportsSection: "Profit & Loss Reports (PKR)",
+                settingsSection: "System & Theme Settings"
+            };
+            document.getElementById('currentPageTitle').textContent = titleMap[sectionId] || "Korvesa Mobile ERP Solution";
+            refreshAllViews();
+            
+            if (sectionId === 'dashboardSection') {
+                setTimeout(triggerChartResize, 60);
+            }
+        }
+
+        document.querySelectorAll('.settings-tab-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.settings-tab-btn').forEach(b => b.classList.remove('active-tab'));
+                this.classList.add('active-tab');
+                const paneId = this.getAttribute('data-pane');
+                document.querySelectorAll('.settings-pane').forEach(p => p.classList.remove('active-pane'));
+                document.getElementById(paneId).classList.add('active-pane');
+            });
+        });
+
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const dotsToggleBtn = document.getElementById('dotsToggleBtn');
+        const mainWrapper = document.getElementById('mainWrapper');
+
+        function triggerChartResize() {
+            if (revenueChartInstance) revenueChartInstance.resize();
+            if (trafficChartInstance) trafficChartInstance.resize();
+        }
+
+        function toggleNavigationMenu() {
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+            } else {
+                sidebar.classList.toggle('nav-hidden');
+                mainWrapper.classList.toggle('full-width');
+            }
+            triggerChartResize();
+            setTimeout(triggerChartResize, 100);
+        }
+
+        dotsToggleBtn.addEventListener('click', toggleNavigationMenu);
+        overlay.addEventListener('click', closeSidebar);
+        mainWrapper.addEventListener('transitionend', triggerChartResize);
+        window.addEventListener('resize', triggerChartResize);
+
+        function closeSidebar() {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+            setTimeout(triggerChartResize, 200);
+        }
+
+        function refreshAllViews() {
+            document.getElementById('activeBranchDisplay').textContent = STATE.settings.activeBranch;
+            document.getElementById('posTaxRateLabel').textContent = STATE.settings.gstRate;
+
+            const totalGross = STATE.invoices.reduce((acc, i) => acc + i.total, 0);
+            const inStockMobiles = STATE.mobiles.filter(m => m.status === 'IN_STOCK').length;
+            const totalPayables = STATE.suppliers.reduce((acc, s) => acc + s.payable, 0);
+
+            document.getElementById('kpiGrossSales').textContent = formatPKR(totalGross);
+            document.getElementById('kpiMobileStock').textContent = `${inStockMobiles} Units`;
+            document.getElementById('kpiPayables').textContent = formatPKR(totalPayables);
+            document.getElementById('kpiCashBalance').textContent = formatPKR(STATE.cashBalance);
+
+            // Purchases Table
+            const purBody = document.getElementById('purchasesTableBody');
+            if (STATE.purchases.length === 0) {
+                purBody.innerHTML = `<tr><td colspan="10" style="text-align:center; padding: 28px; color: var(--text-muted); font-weight:700;"><i class="fa-solid fa-truck-ramp-box" style="font-size:24px; margin-bottom:8px; display:block; opacity:0.5;"></i>No purchase orders recorded yet. Click '+ Inward Mobile Purchase' to add.</td></tr>`;
+            } else {
+                purBody.innerHTML = STATE.purchases.slice().reverse().map(p => `
+                    <tr>
+                        <td><b class="clr-blue">${p.poNo}</b><br><small class="clr-cyan">Ref: ${p.supplierRef}</small></td>
+                        <td><small style="color: var(--text-muted); font-weight:600;">${p.date}</small></td>
+                        <td><b class="clr-violet">${p.supplierName}</b></td>
+                        <td>
+                            <div class="table-item-cell">
+                                <img src="${p.image || DEFAULT_PLACEHOLDER_IMG}" alt="Phone" class="table-thumb">
+                                <div>
+                                    <b style="color: var(--text-heading);">${p.brand}</b> <span class="clr-blue">${p.model}</span><br>
+                                    <small class="clr-cyan">${p.ram} / ${p.storage} • ${p.color}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td><code>${p.imei1}</code><br><code style="color: var(--text-muted);">${p.imei2 || 'N/A'}</code></td>
+                        <td><span class="badge-status ${p.ptaStatus === 'PTA Approved' ? 'status-green' : 'status-amber'}">${p.ptaStatus}</span><br><small class="clr-violet">${p.condition}</small></td>
+                        <td><b class="clr-emerald">${formatPKR(p.total)}</b></td>
+                        <td><span class="clr-blue">Paid: ${formatPKR(p.paid)}</span><br><b class="clr-rose">Due: ${formatPKR(p.due)}</b></td>
+                        <td><span class="badge-status ${p.status === 'ACTIVE' ? 'status-green' : 'status-rose'}">${p.status}</span></td>
+                        <td>
+                            <div style="display: flex; gap: 6px;">
+                                <button class="quick-fill-btn" onclick="previewPurchaseInvoice('${p.poNo}')" title="Print Slip"><i class="fa-solid fa-receipt"></i> Slip</button>
+                                ${p.status === 'ACTIVE' ? `<button class="btn-action-danger" onclick="returnPurchaseItem('${p.poNo}')" title="Return"><i class="fa-solid fa-arrow-rotate-left"></i> Return</button>` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            // Mobile Stock Table
+            const mobBody = document.getElementById('mobileStockTableBody');
+            if (STATE.mobiles.length === 0) {
+                mobBody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 28px; color: var(--text-muted); font-weight:700;"><i class="fa-solid fa-mobile-screen" style="font-size:24px; margin-bottom:8px; display:block; opacity:0.5;"></i>No mobile devices in stock. Record a purchase inward to add stock.</td></tr>`;
+            } else {
+                mobBody.innerHTML = STATE.mobiles.map(m => `
+                    <tr>
+                        <td>
+                            <div class="table-item-cell">
+                                <img src="${m.image || DEFAULT_PLACEHOLDER_IMG}" alt="Phone" class="table-thumb">
+                                <div>
+                                    <b style="color: var(--text-heading);">${m.brand}</b> <span class="clr-blue">${m.model}</span><br>
+                                    <small class="clr-cyan">${m.poNo || 'Stock PO'}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td><b class="clr-violet">${m.ram} / ${m.storage}</b></td>
+                        <td><span class="clr-cyan">${m.color}</span><br><small style="color: var(--text-muted);">${m.condition}</small></td>
+                        <td><code>1: ${m.imei1}</code><br><code>2: ${m.imei2 || 'N/A'}</code><br><small class="clr-violet">S/N: ${m.serialNo}</small></td>
+                        <td><span class="badge-status ${m.ptaStatus === 'PTA Approved' ? 'status-green' : 'status-amber'}">${m.ptaStatus}</span></td>
+                        <td><span class="clr-rose" style="font-weight:700;">${formatPKR(m.cost)}</span></td>
+                        <td><b class="clr-emerald">${formatPKR(m.price)}</b></td>
+                        <td><span class="badge-status ${m.status === 'IN_STOCK' ? 'status-green' : (m.status === 'SOLD' ? 'status-blue' : 'status-rose')}">${m.status}</span></td>
+                        <td>
+                            ${m.status === 'IN_STOCK' ? `<button class="quick-fill-btn" onclick="quickAddMobileToCart(${m.id})"><i class="fa-solid fa-cart-plus"></i> POS</button>` : `<small style="color:var(--text-muted); font-weight:700;">${m.status}</small>`}
+                        </td>
+                    </tr>
+                `).join('');
+            }
+
+            // IMEI Tracker Table
+            const imeiBody = document.getElementById('imeiTableBody');
+            const searchImei = (document.getElementById('imeiSearchBox')?.value || '').toLowerCase();
+            const filteredImeis = STATE.mobiles.filter(m => m.imei1.toLowerCase().includes(searchImei) || (m.imei2 && m.imei2.toLowerCase().includes(searchImei)) || m.model.toLowerCase().includes(searchImei) || m.serialNo.toLowerCase().includes(searchImei));
+            
+            if (filteredImeis.length === 0) {
+                imeiBody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 28px; color: var(--text-muted); font-weight:700;">No IMEI hardware tracking records available.</td></tr>`;
+            } else {
+                imeiBody.innerHTML = filteredImeis.map(m => {
+                    const soldInv = STATE.invoices.find(i => i.items.includes(m.imei1));
+                    return `
+                        <tr>
+                            <td><b class="clr-violet">1:</b> <code>${m.imei1}</code><br><b class="clr-cyan">2:</b> <code>${m.imei2 || 'N/A'}</code></td>
+                            <td><code>${m.serialNo}</code></td>
+                            <td>
+                                <div class="table-item-cell">
+                                    <img src="${m.image || DEFAULT_PLACEHOLDER_IMG}" alt="Phone" style="width:28px; height:28px; border-radius:6px; object-fit:cover;">
+                                    <span><b>${m.brand}</b> <span class="clr-blue">${m.model}</span> (${m.storage})</span>
+                                </div>
+                            </td>
+                            <td><span class="badge-status status-blue">${m.ptaStatus}</span><br><small class="clr-amber">${m.condition}</small></td>
+                            <td><b class="clr-violet">${m.poNo || '—'}</b></td>
+                            <td>${soldInv ? `<b class="clr-emerald">${soldInv.id}</b>` : '<span style="color:var(--text-muted);">In Stock</span>'}</td>
+                            <td><span class="badge-status ${m.status === 'IN_STOCK' ? 'status-green' : (m.status === 'SOLD' ? 'status-blue' : 'status-rose')}">${m.status}</span></td>
+                        </tr>
+                    `;
+                }).join('');
+            }
+
+            // Recent POS Invoices Table
+            const recentBody = document.getElementById('recentInvoicesTableBody');
+            if (STATE.invoices.length === 0) {
+                recentBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 20px; color: var(--text-muted); font-weight:600;">No transactions yet. Complete sales via POS Terminal.</td></tr>`;
+            } else {
+                recentBody.innerHTML = STATE.invoices.slice().reverse().slice(0, 5).map(inv => `
+                    <tr>
+                        <td><b class="clr-blue">${inv.id}</b></td>
+                        <td><b class="clr-violet">${inv.customer}</b></td>
+                        <td><span style="color: var(--text-body); font-weight:600;">${inv.items}</span></td>
+                        <td><span class="badge-status status-cyan">${inv.mode}</span></td>
+                        <td><b class="clr-emerald">${formatPKR(inv.total)}</b></td>
+                        <td><button class="quick-fill-btn" onclick="previewSalesInvoice('${inv.id}')"><i class="fa-solid fa-receipt"></i> Slip</button></td>
+                    </tr>
+                `).join('');
+            }
+
+            // Accessories Table
+            const accBody = document.getElementById('accessoriesTableBody');
+            if (STATE.accessories.length === 0) {
+                accBody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding: 28px; color: var(--text-muted); font-weight:700;"><i class="fa-solid fa-headphones" style="font-size:24px; margin-bottom:8px; display:block; opacity:0.5;"></i>No accessory items cataloged. Click '+ Add Accessory' to create items.</td></tr>`;
+            } else {
+                accBody.innerHTML = STATE.accessories.map(a => `
+                    <tr>
+                        <td>
+                            <div class="table-item-cell">
+                                <img src="${a.image || DEFAULT_PLACEHOLDER_IMG}" alt="Accessory" class="table-thumb">
+                                <b class="clr-blue">${a.name}</b>
+                            </div>
+                        </td>
+                        <td><code>${a.sku}</code></td>
+                        <td><b class="clr-violet">${a.qty}</b> Units</td>
+                        <td><span class="clr-rose" style="font-weight:700;">${formatPKR(a.cost)}</span></td>
+                        <td><b class="clr-emerald">${formatPKR(a.price)}</b></td>
+                        <td><span class="badge-status ${a.qty <= STATE.settings.lowStockThreshold ? 'status-rose' : 'status-green'}">${a.qty <= STATE.settings.lowStockThreshold ? 'Low Stock' : 'Healthy'}</span></td>
+                        <td><button class="quick-fill-btn" onclick="quickAddAccessoryToCart(${a.id})"><i class="fa-solid fa-cart-plus"></i> POS</button></td>
+                    </tr>
+                `).join('');
+            }
+
+            // Customers Table & Dropdown
+            const custBody = document.getElementById('customersTableBody');
+            if (STATE.customers.length === 0) {
+                custBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 28px; color: var(--text-muted); font-weight:700;">No customer accounts registered yet.</td></tr>`;
+            } else {
+                custBody.innerHTML = STATE.customers.map(c => `
+                    <tr>
+                        <td><b class="clr-violet">${c.name}</b></td>
+                        <td><span class="clr-cyan" style="font-weight:600;">${c.phone}</span></td>
+                        <td><span class="clr-blue" style="font-weight:700;">${c.invoices} Orders</span></td>
+                        <td><b class="clr-rose">${formatPKR(c.balance)}</b></td>
+                        <td><span class="clr-emerald" style="font-weight:700;">${formatPKR(c.limit)}</span></td>
+                        <td><button class="quick-fill-btn" onclick="triggerToast('Ledger synced')">View Ledger</button></td>
+                    </tr>
+                `).join('');
+            }
+
+            const custSelect = document.getElementById('posCustomerSelect');
+            if (STATE.customers.length === 0) {
+                custSelect.innerHTML = `<option value="Walk-in Customer">Walk-in Counter Customer (Default)</option>`;
+            } else {
+                custSelect.innerHTML = STATE.customers.map(c => 
+                    `<option value="${c.name}">${c.name} • (Balance: ${formatPKR(c.balance)} / Limit: ${formatPKR(c.limit)})</option>`
+                ).join('');
+            }
+
+            // Suppliers Table
+            const supBody = document.getElementById('suppliersTableBody');
+            if (STATE.suppliers.length === 0) {
+                supBody.innerHTML = `<tr><td colspan="6" style="text-align:center; padding: 28px; color: var(--text-muted); font-weight:700;"><i class="fa-solid fa-building-user" style="font-size:24px; margin-bottom:8px; display:block; opacity:0.5;"></i>No vendors registered. Click '+ Add Supplier' to onboard distributors.</td></tr>`;
+            } else {
+                supBody.innerHTML = STATE.suppliers.map(s => `
+                    <tr>
+                        <td><b class="clr-violet">${s.name}</b></td>
+                        <td><span class="clr-blue" style="font-weight:700;">${s.person}</span></td>
+                        <td><span class="clr-cyan" style="font-weight:600;">${s.phone}</span><br><small style="color: var(--text-muted);">${s.address}</small></td>
+                        <td><b class="clr-rose">${formatPKR(s.payable)}</b></td>
+                        <td><span class="badge-status status-green">Active Vendor</span></td>
+                        <td><button class="quick-fill-btn" onclick="settleSupplierDuePrompt(${s.id})">Settle Balance</button></td>
+                    </tr>
+                `).join('');
+            }
+
+            // Accounts & Reports
+            document.getElementById('accCashBalance').textContent = formatPKR(STATE.cashBalance);
+            document.getElementById('accPayablesBalance').textContent = formatPKR(totalPayables);
+
+            const journalBody = document.getElementById('journalTableBody');
+            if (STATE.journal.length === 0) {
+                journalBody.innerHTML = `<tr><td colspan="5" style="text-align:center; padding: 24px; color: var(--text-muted); font-weight:600;">No financial ledger entries recorded yet.</td></tr>`;
+            } else {
+                journalBody.innerHTML = STATE.journal.slice().reverse().map(j => `
+                    <tr>
+                        <td><small style="color: var(--text-muted); font-weight:600;">${j.date}</small></td>
+                        <td><b class="clr-blue">${j.channel}</b></td>
+                        <td><span class="badge-status ${j.type === 'INFLOW' ? 'status-green' : 'status-rose'}">${j.type}</span></td>
+                        <td><span style="color: var(--text-body); font-weight:600;">${j.details}</span></td>
+                        <td><b class="${j.type === 'INFLOW' ? 'clr-emerald' : 'clr-rose'}">${formatPKR(j.amount)}</b></td>
+                    </tr>
+                `).join('');
+            }
+
+            const grossSales = STATE.invoices.reduce((acc, i) => acc + i.total, 0);
+            const totalCogs = STATE.invoices.reduce((acc, i) => acc + (i.cost || 0), 0);
+            const totalExp = STATE.expenses.reduce((acc, e) => acc + e.amount, 0);
+            const netProfit = grossSales - totalCogs - totalExp;
+
+            document.getElementById('repGrossSales').textContent = formatPKR(grossSales);
+            document.getElementById('repCostGoods').textContent = formatPKR(totalCogs);
+            document.getElementById('repExpenses').textContent = formatPKR(totalExp);
+            document.getElementById('repNetProfit').textContent = formatPKR(netProfit);
+
+            renderPosCatalog();
+            updatePosSummary();
+            updateChartsTheme();
+        }
+
+        function openNewPurchaseModal() {
+            if (STATE.suppliers.length === 0) {
+                alert("Please add at least one Supplier Vendor first before recording an inward purchase!");
+                openModal('addSupplierModal');
+                return;
+            }
+
+            const nextPoId = `${STATE.settings.purchasePrefix}${String(STATE.purchases.length + 1).padStart(4, '0')}`;
+            document.getElementById('pInvoiceNo').value = nextPoId;
+
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById('pDate').value = now.toISOString().slice(0, 16);
+
+            const pSupSelect = document.getElementById('pSupplierSelect');
+            pSupSelect.innerHTML = STATE.suppliers.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+            
+            document.getElementById('pMobileImgPreview').innerHTML = `<i class="fa-solid fa-image" style="font-size: 18px;"></i>`;
+            document.getElementById('pMobileImageInput').value = '';
+
+            onSupplierChange();
+            openModal('purchaseModal');
+        }
+
+        function onSupplierChange() {
+            const supId = parseInt(document.getElementById('pSupplierSelect').value);
+            const sup = STATE.suppliers.find(s => s.id === supId);
+            if (sup) {
+                document.getElementById('pSupplierPrevBalance').value = `${formatPKR(sup.payable)} Outstanding Due`;
+            } else {
+                document.getElementById('pSupplierPrevBalance').value = 'Rs. 0';
+            }
+        }
+
+        function calculatePurchaseTotals() {
+            const unitCost = parseFloat(document.getElementById('pUnitCost').value) || 0;
+            const discount = parseFloat(document.getElementById('pDiscount').value) || 0;
+            const tax = parseFloat(document.getElementById('pTax').value) || 0;
+            
+            const totalAmount = Math.max(0, (unitCost * 1) + tax - discount);
+            document.getElementById('pTotalAmount').value = totalAmount;
+
+            const retailField = document.getElementById('pRetailPrice');
+            if (!retailField.value || retailField.dataset.userEdited !== "true") {
+                retailField.value = Math.round(unitCost * 1.10);
+            }
+
+            const paidAmount = parseFloat(document.getElementById('pPaidAmount').value) || 0;
+            const remainingDue = Math.max(0, totalAmount - paidAmount);
+            document.getElementById('pRemainingAmount').value = formatPKR(remainingDue);
+        }
+
+        document.getElementById('pRetailPrice').addEventListener('input', function() {
+            this.dataset.userEdited = "true";
+        });
+
+        document.getElementById('mobilePurchaseForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const poNo = document.getElementById('pInvoiceNo').value;
+            const date = document.getElementById('pDate').value.replace('T', ' ');
+            const supplierRef = document.getElementById('pSupplierRef').value.trim();
+            const supId = parseInt(document.getElementById('pSupplierSelect').value);
+            const supplier = STATE.suppliers.find(s => s.id === supId);
+
+            if (!supplier) {
+                alert('Please select a valid supplier');
+                return;
+            }
+
+            const brand = document.getElementById('pBrand').value.trim();
+            const model = document.getElementById('pModel').value.trim();
+            const color = document.getElementById('pColor').value.trim();
+            const ram = document.getElementById('pRam').value;
+            const storage = document.getElementById('pStorage').value;
+            const ptaStatus = document.getElementById('pPtaStatus').value;
+            const condition = document.getElementById('pCondition').value;
+
+            const imei1 = document.getElementById('pImei1').value.trim();
+            const imei2 = document.getElementById('pImei2').value.trim();
+            const serialNo = document.getElementById('pSerialNo').value.trim();
+
+            const unitCost = parseFloat(document.getElementById('pUnitCost').value) || 0;
+            const discount = parseFloat(document.getElementById('pDiscount').value) || 0;
+            const tax = parseFloat(document.getElementById('pTax').value) || 0;
+            const total = parseFloat(document.getElementById('pTotalAmount').value) || unitCost;
+            const retailPrice = parseFloat(document.getElementById('pRetailPrice').value) || Math.round(unitCost * 1.10);
+
+            const paid = parseFloat(document.getElementById('pPaidAmount').value) || 0;
+            const due = Math.max(0, total - paid);
+            const paymentMethod = document.getElementById('pPaymentMethod').value;
+
+            const imgInput = document.getElementById('pMobileImageInput');
+            const uploadedImg = await getBase64Image(imgInput);
+            const finalImage = uploadedImg || DEFAULT_PLACEHOLDER_IMG;
+
+            if (STATE.mobiles.some(m => m.imei1 === imei1 || (m.imei2 && m.imei2 === imei1))) {
+                triggerToast(`Error: IMEI ${imei1} already exists in database!`);
+                return;
+            }
+
+            const purchaseRecord = {
+                poNo, date, supplierRef, supplierId: supId, supplierName: supplier.name,
+                brand, model, ram, storage, color, imei1, imei2, serialNo, ptaStatus, condition,
+                unitCost, qty: 1, discount, tax, total, paid, due, paymentMethod, retailPrice, status: "ACTIVE",
+                image: finalImage
+            };
+            STATE.purchases.push(purchaseRecord);
+
+            const newMobileStock = {
+                id: Date.now(), brand, model, ram, storage, color, imei1, imei2, serialNo,
+                ptaStatus, condition, cost: unitCost, price: retailPrice, status: "IN_STOCK", poNo,
+                image: finalImage
+            };
+            STATE.mobiles.push(newMobileStock);
+
+            if (due > 0) supplier.payable += due;
+
+            if (paid > 0) {
+                if (paymentMethod === 'Cash on Counter') {
+                    STATE.cashBalance -= paid;
+                    STATE.journal.push({ date, channel: "Cash Drawer", type: "OUTFLOW", details: `PO Payment: ${poNo} (${supplier.name})`, amount: paid });
+                } else {
+                    STATE.journal.push({ date, channel: paymentMethod, type: "OUTFLOW", details: `PO Payment: ${poNo} (${supplier.name})`, amount: paid });
+                }
+            }
+
+            if (due > 0) {
+                STATE.journal.push({ date, channel: "Supplier Payable Ledger", type: "OUTFLOW", details: `Payable Added: ${poNo} (${supplier.name})`, amount: due });
+            }
+
+            saveState();
+            closeModal('purchaseModal');
+            document.getElementById('mobilePurchaseForm').reset();
+
+            previewPurchaseInvoice(poNo);
+            triggerToast(`Device ${brand} ${model} added to stock!`);
+        });
+
+        function previewPurchaseInvoice(poNo) {
+            const p = STATE.purchases.find(item => item.poNo === poNo);
+            if (!p) return;
+
+            const slip = document.getElementById('purchaseReceiptContent');
+            slip.innerHTML = `
+                <div class="receipt-center">
+                    <h3 style="font-size: 15px; font-weight: 800; color: #2563EB;">${STATE.settings.companyName}</h3>
+                    <p style="font-weight:700;">OFFICIAL INWARD PURCHASE INVOICE (PKR)</p>
+                    <p style="font-size:11px; color:#64748B;">${STATE.settings.companyAddress || 'Head Office'}</p>
+                </div>
+                <div class="receipt-line"></div>
+                <div>
+                    <b>PO Number:</b> <span style="color:#2563EB;">${p.poNo}</span><br>
+                    <b>Supplier Ref:</b> ${p.supplierRef}<br>
+                    <b>Date:</b> ${p.date}<br>
+                    <b>Supplier:</b> <span style="color:#7C3AED;">${p.supplierName}</span>
+                </div>
+                <div class="receipt-line"></div>
+                <div>
+                    <b style="color:#0891B2;">DEVICE SPECIFICATIONS:</b><br>
+                    <b>${p.brand} ${p.model}</b> (${p.ram}/${p.storage})<br>
+                    <b>Color:</b> ${p.color} | <b>Cond:</b> ${p.condition}<br>
+                    <b>PTA:</b> <span style="color:#059669; font-weight:700;">${p.ptaStatus}</span><br>
+                    <b>IMEI 1:</b> <code>${p.imei1}</code><br>
+                    ${p.imei2 ? `<b>IMEI 2:</b> <code>${p.imei2}</code><br>` : ''}
+                    <b>S/N:</b> <code>${p.serialNo}</code>
+                </div>
+                <div class="receipt-line"></div>
+                <div style="display: flex; justify-content: space-between;"><span>Unit Cost:</span><span>${formatPKR(p.unitCost)}</span></div>
+                <div style="display: flex; justify-content: space-between; color:#E11D48;"><span>Discount:</span><span>-${formatPKR(p.discount)}</span></div>
+                <div style="display: flex; justify-content: space-between; color:#7C3AED;"><span>Tax / Duty:</span><span>+${formatPKR(p.tax)}</span></div>
+                <div style="display: flex; justify-content: space-between; font-weight: 800; margin-top: 4px; color:#2563EB;"><span>Total Bill:</span><span>${formatPKR(p.total)}</span></div>
+                <div class="receipt-line"></div>
+                <div style="display: flex; justify-content: space-between; color:#059669;"><span>Paid (${p.paymentMethod}):</span><span>${formatPKR(p.paid)}</span></div>
+                <div style="display: flex; justify-content: space-between; color: #E11D48; font-weight: 800;"><span>Remaining Due:</span><span>${formatPKR(p.due)}</span></div>
+                <div class="receipt-line"></div>
+                <div class="receipt-center" style="font-size: 11px; color: #64748B;">
+                    Stock registered into PKR inventory.
+                </div>
+            `;
+            openModal('purchaseInvoiceModal');
+        }
+
+        function returnPurchaseItem(poNo) {
+            const p = STATE.purchases.find(item => item.poNo === poNo);
+            if (!p || p.status === 'RETURNED') return;
+
+            const mob = STATE.mobiles.find(m => m.imei1 === p.imei1);
+            if (mob && mob.status === 'SOLD') {
+                alert('Cannot return device: Phone has already been SOLD via POS!');
+                return;
+            }
+
+            if (!confirm(`Return ${p.brand} ${p.model} (IMEI: ${p.imei1}) to supplier ${p.supplierName}?`)) return;
+
+            p.status = 'RETURNED';
+            if (mob) mob.status = 'RETURNED_TO_SUPPLIER';
+
+            const sup = STATE.suppliers.find(s => s.name === p.supplierName);
+            if (sup && p.due > 0) sup.payable = Math.max(0, sup.payable - p.due);
+            if (p.paid > 0) {
+                STATE.cashBalance += p.paid;
+                STATE.journal.push({ date: new Date().toLocaleString(), channel: "Cash Drawer", type: "INFLOW", details: `Supplier Return Refund: ${p.poNo}`, amount: p.paid });
+            }
+
+            saveState();
+            triggerToast(`Device marked as RETURNED to ${p.supplierName}`);
+        }
+
+        function settleSupplierDuePrompt(supId) {
+            const sup = STATE.suppliers.find(s => s.id === supId);
+            if (!sup) return;
+            const amt = prompt(`Enter amount to pay to ${sup.name} (Outstanding Due: ${formatPKR(sup.payable)}):`, sup.payable);
+            const parsed = parseFloat(amt);
+            if (!isNaN(parsed) && parsed > 0) {
+                sup.payable = Math.max(0, sup.payable - parsed);
+                STATE.cashBalance -= parsed;
+                STATE.journal.push({ date: new Date().toLocaleString(), channel: "Cash Drawer", type: "OUTFLOW", details: `Supplier Payout: ${sup.name}`, amount: parsed });
+                saveState();
+                triggerToast(`Settlement paid to ${sup.name}`);
+            }
+        }
+
+        function renderPosCatalog() {
+            const query = (document.getElementById('posSearchInput')?.value || '').toLowerCase();
+            const cat = document.getElementById('posCategoryFilter')?.value || 'ALL';
+            const container = document.getElementById('posCatalogContainer');
+
+            let itemsHtml = '';
+
+            if (cat === 'ALL' || cat === 'MOBILE') {
+                STATE.mobiles.filter(m => m.status === 'IN_STOCK' && (m.brand.toLowerCase().includes(query) || m.model.toLowerCase().includes(query) || m.imei1.includes(query) || (m.imei2 && m.imei2.includes(query)) || m.ptaStatus.toLowerCase().includes(query))).forEach(m => {
+                    itemsHtml += `
+                        <div class="pos-product-card" onclick="quickAddMobileToCart(${m.id})">
+                            <div class="pos-product-img-box">
+                                <img src="${m.image || DEFAULT_PLACEHOLDER_IMG}" alt="${m.brand} ${m.model}">
+                            </div>
+                            <div>
+                                <span class="badge-status status-blue" style="font-size: 8.5px; padding: 2px 6px;">${m.ptaStatus}</span>
+                                <h4 style="margin-top: 4px;">${m.brand} <span class="clr-blue">${m.model}</span></h4>
+                                <p style="font-size: 10.5px; color: var(--text-muted); font-weight:600;">${m.storage} • <span class="clr-cyan">${m.condition}</span></p>
+                            </div>
+                            <div style="margin-top: 4px;">
+                                <div class="price">${formatPKR(m.price)}</div>
+                                <div class="stock-tag">IMEI: ...${m.imei1.slice(-4)}</div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            if (cat === 'ALL' || cat === 'ACCESSORY') {
+                STATE.accessories.filter(a => a.qty > 0 && (a.name.toLowerCase().includes(query) || a.sku.toLowerCase().includes(query))).forEach(a => {
+                    itemsHtml += `
+                        <div class="pos-product-card" onclick="quickAddAccessoryToCart(${a.id})">
+                            <div class="pos-product-img-box">
+                                <img src="${a.image || DEFAULT_PLACEHOLDER_IMG}" alt="${a.name}">
+                            </div>
+                            <div>
+                                <span class="badge-status status-amber" style="font-size: 8.5px; padding: 2px 6px;">ACCESSORY</span>
+                                <h4 style="margin-top: 4px;" class="clr-violet">${a.name}</h4>
+                                <p style="font-size: 10.5px; color: var(--text-muted); font-weight:600;">${a.sku}</p>
+                            </div>
+                            <div style="margin-top: 4px;">
+                                <div class="price">${formatPKR(a.price)}</div>
+                                <div class="stock-tag" style="color:var(--text-accent-emerald);">${a.qty} in stock</div>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            container.innerHTML = itemsHtml || '<p style="color: var(--text-muted); font-size: 13px; grid-column: 1/-1; padding: 30px 0; text-align: center; font-weight:600;">No items found. Add mobile stock or accessories first.</p>';
+        }
+
+        function quickAddMobileToCart(id) {
+            const mob = STATE.mobiles.find(m => m.id === id);
+            if (!mob || mob.status !== 'IN_STOCK') return;
+            if (posCart.some(item => item.type === 'MOBILE' && item.id === id)) {
+                triggerToast('This smartphone is already in your cart!');
+                return;
+            }
+            posCart.push({
+                type: 'MOBILE', id: mob.id, name: `${mob.brand} ${mob.model} (${mob.storage})`,
+                imei: mob.imei1, price: mob.price, cost: mob.cost, qty: 1, image: mob.image || DEFAULT_PLACEHOLDER_IMG
+            });
+            renderPosCart();
+        }
+
+        function quickAddAccessoryToCart(id) {
+            const acc = STATE.accessories.find(a => a.id === id);
+            if (!acc || acc.qty <= 0) return;
+            const existing = posCart.find(item => item.type === 'ACCESSORY' && item.id === id);
+            if (existing) {
+                if (existing.qty < acc.qty) existing.qty += 1;
+                else triggerToast('Stock limit reached for accessory!');
+            } else {
+                posCart.push({
+                    type: 'ACCESSORY', id: acc.id, name: acc.name, price: acc.price, cost: acc.cost,
+                    qty: 1, maxQty: acc.qty, image: acc.image || DEFAULT_PLACEHOLDER_IMG
+                });
+            }
+            renderPosCart();
+        }
+
+        function renderPosCart() {
+            const body = document.getElementById('posCartTableBody');
+            body.innerHTML = posCart.map((item, idx) => `
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <img src="${item.image}" alt="Thumb" class="cart-item-thumb">
+                            <div>
+                                <b class="clr-blue">${item.name}</b>
+                                ${item.imei ? `<br><small class="clr-violet" style="font-size:10px; font-weight:700;">IMEI: ${item.imei}</small>` : ''}
+                            </div>
+                        </div>
+                    </td>
+                    <td>${item.type === 'ACCESSORY' ? `<input type="number" value="${item.qty}" min="1" max="${item.maxQty}" style="width: 40px; padding: 2px 4px; font-size: 11px; background: var(--surface); color: var(--text-heading); border: 1px solid var(--border); border-radius: 4px; font-weight:700;" onchange="updateCartQty(${idx}, this.value)">` : '<b class="clr-cyan">1</b>'}</td>
+                    <td><span class="clr-rose" style="font-weight:700;">${formatPKR(item.price)}</span></td>
+                    <td><b class="clr-emerald">${formatPKR(item.price * item.qty)}</b></td>
+                    <td><i class="fa-solid fa-trash-can" style="color: var(--clr-rose); cursor: pointer;" onclick="removeFromCart(${idx})"></i></td>
+                </tr>
+            `).join('');
+            updatePosSummary();
+        }
+
+        function updateCartQty(idx, val) {
+            const q = parseInt(val) || 1;
+            posCart[idx].qty = Math.min(q, posCart[idx].maxQty || 1);
+            renderPosCart();
+        }
+
+        function removeFromCart(idx) {
+            posCart.splice(idx, 1);
+            renderPosCart();
+        }
+
+        function resetPosCart() {
+            posCart = [];
+            renderPosCart();
+        }
+
+        function updatePosSummary() {
+            const subtotal = posCart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            const gstRate = parseFloat(STATE.settings.gstRate) || 0;
+            const taxAmount = (subtotal * gstRate) / 100;
+            const discount = parseFloat(document.getElementById('posDiscountInput')?.value) || 0;
+            const netTotal = Math.max(0, subtotal + taxAmount - discount);
+
+            document.getElementById('posSubtotal').textContent = formatPKR(subtotal);
+            document.getElementById('posTaxAmount').textContent = formatPKR(taxAmount);
+            document.getElementById('posNetTotal').textContent = formatPKR(netTotal);
+        }
+
+        function completePosCheckout() {
+            if (posCart.length === 0) {
+                triggerToast('POS cart is empty! Add products first.');
+                return;
+            }
+
+            const subtotal = posCart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            const totalCost = posCart.reduce((acc, item) => acc + (item.cost * item.qty), 0);
+            const gstRate = parseFloat(STATE.settings.gstRate) || 0;
+            const taxAmount = (subtotal * gstRate) / 100;
+            const discount = parseFloat(document.getElementById('posDiscountInput')?.value) || 0;
+            const netTotal = Math.max(0, subtotal + taxAmount - discount);
+            const customerName = document.getElementById('posCustomerSelect').value.split(' • ')[0] || "Walk-in Customer";
+            const paymentMode = document.getElementById('posPaymentMode').value;
+            const invoiceId = `${STATE.settings.invoicePrefix}${String(STATE.invoices.length + 1).padStart(4, '0')}`;
+
+            posCart.forEach(item => {
+                if (item.type === 'MOBILE') {
+                    const mob = STATE.mobiles.find(m => m.id === item.id);
+                    if (mob) mob.status = 'SOLD';
+                } else if (item.type === 'ACCESSORY') {
+                    const acc = STATE.accessories.find(a => a.id === item.id);
+                    if (acc) acc.qty -= item.qty;
+                }
+            });
+
+            if (paymentMode.includes('Cash')) {
+                STATE.cashBalance += netTotal;
+                STATE.journal.push({ date: new Date().toLocaleString(), channel: "Cash Drawer", type: "INFLOW", details: `POS Sale: ${invoiceId}`, amount: netTotal });
+            } else if (paymentMode.includes('Credit')) {
+                const cust = STATE.customers.find(c => c.name === customerName);
+                if (cust) cust.balance += netTotal;
+                STATE.journal.push({ date: new Date().toLocaleString(), channel: "Customer Ledger", type: "INFLOW", details: `Credit Sale: ${invoiceId} (${customerName})`, amount: netTotal });
+            } else {
+                STATE.journal.push({ date: new Date().toLocaleString(), channel: paymentMode, type: "INFLOW", details: `POS Sale: ${invoiceId}`, amount: netTotal });
+            }
+
+            const newInvoice = {
+                id: invoiceId, customer: customerName,
+                items: posCart.map(i => `${i.name} (x${i.qty})`).join(', '),
+                subtotal, tax: taxAmount, discount, total: netTotal, cost: totalCost,
+                mode: paymentMode, date: new Date().toLocaleString()
+            };
+
+            STATE.invoices.push(newInvoice);
+            saveState();
+
+            previewSalesInvoice(invoiceId);
+            resetPosCart();
+            triggerToast(`Invoice ${invoiceId} generated!`);
+        }
+
+        function previewSalesInvoice(invId) {
+            const inv = STATE.invoices.find(i => i.id === invId);
+            if (!inv) return;
+
+            const slip = document.getElementById('printableReceipt');
+            slip.innerHTML = `
+                <div class="receipt-center">
+                    <h3 style="font-size: 15px; font-weight: 800; color: #2563EB;">${STATE.settings.companyName}</h3>
+                    <p style="font-size: 11px; color:#64748B;">${STATE.settings.companyAddress || 'Head Office'}</p>
+                    <p style="font-size: 11px; color:#7C3AED;">Phone: ${STATE.settings.companyPhone || 'N/A'}</p>
+                </div>
+                <div class="receipt-line"></div>
+                <div>
+                    <b>Sales Invoice:</b> <span style="color:#2563EB;">${inv.id}</span><br>
+                    <b>Date:</b> ${inv.date}<br>
+                    <b>Customer:</b> <span style="color:#7C3AED;">${inv.customer}</span><br>
+                    <b>Payment:</b> <span style="color:#059669;">${inv.mode}</span>
+                </div>
+                <div class="receipt-line"></div>
+                <div style="margin: 8px 0;">
+                    <b style="color:#0891B2;">Purchased Items:</b><br>
+                    ${inv.items}
+                </div>
+                <div class="receipt-line"></div>
+                <div style="display: flex; justify-content: space-between;"><span>Subtotal:</span><span>${formatPKR(inv.subtotal)}</span></div>
+                <div style="display: flex; justify-content: space-between; color:#7C3AED;"><span>GST Tax:</span><span>${formatPKR(inv.tax)}</span></div>
+                <div style="display: flex; justify-content: space-between; color:#E11D48;"><span>Discount:</span><span>-${formatPKR(inv.discount)}</span></div>
+                <div style="display: flex; justify-content: space-between; font-weight: 900; font-size:14px; margin-top: 4px; color:#059669;"><span>Total Paid:</span><span>${formatPKR(inv.total)}</span></div>
+                <div class="receipt-line"></div>
+                <div class="receipt-center" style="font-size: 11px; color: #64748B;">
+                    ${STATE.settings.invoiceFooter}
+                </div>
+            `;
+            openModal('invoiceModal');
+        }
+
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        document.getElementById('addAccessoryForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('accName').value.trim();
+            const sku = document.getElementById('accSku').value.trim();
+            const qty = parseInt(document.getElementById('accQty').value) || 0;
+            const cost = parseFloat(document.getElementById('accCost').value) || 0;
+            const price = parseFloat(document.getElementById('accPrice').value) || 0;
+
+            const imgInput = document.getElementById('accImageInput');
+            const uploadedImg = await getBase64Image(imgInput);
+            const finalImage = uploadedImg || DEFAULT_PLACEHOLDER_IMG;
+
+            STATE.accessories.push({ id: Date.now(), name, sku, qty, cost, price, image: finalImage });
+            saveState();
+            closeModal('addAccessoryModal');
+            document.getElementById('addAccessoryForm').reset();
+            document.getElementById('accImgPreview').innerHTML = `<i class="fa-solid fa-headphones" style="font-size: 18px;"></i>`;
+            triggerToast('Accessory added to catalog');
+        });
+
+        document.getElementById('addCustomerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const limit = parseFloat(document.getElementById('custLimit').value) || 0;
+
+            STATE.customers.push({ id: Date.now(), name, phone, invoices: 0, balance: 0, limit });
+            saveState();
+            closeModal('addCustomerModal');
+            document.getElementById('addCustomerForm').reset();
+            triggerToast('Customer account created');
+        });
+
+        document.getElementById('addSupplierForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('supName').value.trim();
+            const person = document.getElementById('supPerson').value.trim();
+            const phone = document.getElementById('supPhone').value.trim();
+            const address = document.getElementById('supAddress').value.trim();
+
+            STATE.suppliers.push({ id: Date.now(), name, person, phone, address, payable: 0 });
+            saveState();
+            closeModal('addSupplierModal');
+            document.getElementById('addSupplierForm').reset();
+            triggerToast('Supplier registered');
+        });
+
+        document.getElementById('expenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('expTitle').value.trim();
+            const amount = parseFloat(document.getElementById('expAmount').value) || 0;
+            const channel = document.getElementById('expChannel').value;
+
+            STATE.expenses.push({ title, amount, channel, date: new Date().toLocaleDateString() });
+            if (channel === 'Cash') STATE.cashBalance -= amount;
+
+            STATE.journal.push({ date: new Date().toLocaleString(), channel: channel === 'Cash' ? 'Cash Drawer' : 'Bank Alfalah', type: 'OUTFLOW', details: `Expense: ${title}`, amount });
+
+            saveState();
+            closeModal('expenseModal');
+            document.getElementById('expenseForm').reset();
+            triggerToast('Shop expense recorded');
+        });
+
+        function saveEnterpriseSettings() {
+            STATE.settings.companyName = document.getElementById('setCompanyName').value.trim();
+            STATE.settings.companyEmail = document.getElementById('setCompanyEmail').value.trim();
+            STATE.settings.companyPhone = document.getElementById('setCompanyPhone').value.trim();
+            STATE.settings.companyNtn = document.getElementById('setCompanyNtn').value.trim();
+            STATE.settings.companyAddress = document.getElementById('setCompanyAddress').value.trim();
+            STATE.settings.activeBranch = document.getElementById('setActiveBranch').value;
+            STATE.settings.invoicePrefix = document.getElementById('setInvoicePrefix').value.trim();
+            STATE.settings.purchasePrefix = document.getElementById('setPurchasePrefix').value.trim();
+            STATE.settings.invoiceFooter = document.getElementById('setInvoiceFooter').value.trim();
+            STATE.settings.gstRate = parseFloat(document.getElementById('setGstRate').value) || 0;
+
+            saveState();
+            triggerToast('System settings saved');
+        }
+
+        function downloadBackupJson() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(STATE, null, 2));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `korvesa_erp_backup_${Date.now()}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+            triggerToast('State backup downloaded');
+        }
+
+        function resetAllDemoData() {
+            if (confirm("Are you sure you want to clean and wipe all current data?")) {
+                localStorage.removeItem(STORAGE_KEY);
+                STATE = JSON.parse(JSON.stringify(DEFAULT_STATE));
+                setSystemTheme('corporate', false);
+                saveState();
+                triggerToast('Database reset to clean state');
+            }
+        }
+
+        function exportDataToCsv() {
+            let csv = "Invoice ID,Customer,Items,Total Paid (PKR),Payment Mode,Date\n";
+            STATE.invoices.forEach(i => {
+                csv += `"${i.id}","${i.customer}","${i.items}",${i.total},"${i.mode}","${i.date}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `sales_report_${Date.now()}.csv`;
+            a.click();
+            triggerToast('Sales CSV exported');
+        }
+
+        function initCharts() {
+            const ctxRev = document.getElementById('revenueChart').getContext('2d');
+            revenueChartInstance = new Chart(ctxRev, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [
+                        {
+                            label: 'Sales Revenue (PKR)',
+                            data: [0, 0, 0, 0, 0, 0, 0],
+                            borderColor: '#10B981',
+                            backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                            fill: true,
+                            tension: 0.35,
+                            borderWidth: 2.5
+                        },
+                        {
+                            label: 'Stock Purchase Cost (PKR)',
+                            data: [0, 0, 0, 0, 0, 0, 0],
+                            borderColor: '#F43F5E',
+                            backgroundColor: 'rgba(244, 63, 94, 0.06)',
+                            fill: true,
+                            tension: 0.35,
+                            borderWidth: 2.5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 250 },
+                    plugins: {
+                        legend: {
+                            labels: {
+                                font: { family: 'Plus Jakarta Sans', weight: '700' }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const ctxTra = document.getElementById('trafficChart').getContext('2d');
+            trafficChartInstance = new Chart(ctxTra, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Smartphones', 'Accessories', 'Others'],
+                    datasets: [{
+                        data: [0, 0, 1],
+                        backgroundColor: ['#3B82F6', '#8B5CF6', '#CBD5E1'],
+                        borderWidth: 2,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 250 },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: 'Plus Jakarta Sans', weight: '700' }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function updateChartsTheme() {
+            if (trafficChartInstance) {
+                const mobCount = STATE.mobiles.filter(m => m.status === 'IN_STOCK').length;
+                const accCount = STATE.accessories.reduce((acc, a) => acc + a.qty, 0);
+                if (mobCount === 0 && accCount === 0) {
+                    trafficChartInstance.data.datasets[0].data = [0, 0, 1];
+                } else {
+                    trafficChartInstance.data.datasets[0].data = [mobCount, accCount, 0];
+                }
+                trafficChartInstance.update();
+            }
+            if (revenueChartInstance) {
+                revenueChartInstance.update();
+            }
+        }
+    </script>
+</body>
+</html>
