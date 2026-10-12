@@ -1065,8 +1065,8 @@
             <header class="topbar">
                 <div class="topbar-left">
                     <div class="current-page-badge">
-                        <button class="btn-nav-dots" id="dotsToggleBtn" title="Toggle Navigation Menu">
-                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        <button class="btn-nav-dots" id="sidebarToggleBtn" title="Toggle Navigation Menu">
+                            <i class="fa-solid fa-chevron-left" id="sidebarToggleIcon"></i>
                         </button>
                         <span id="currentPageTitle">Executive Dashboard</span>
                     </div>
@@ -2195,14 +2195,27 @@
             });
         });
 
-        const sidebar = document.getElementById('sidebar');
+       const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('sidebarOverlay');
-        const dotsToggleBtn = document.getElementById('dotsToggleBtn');
+        const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+        const sidebarToggleIcon = document.getElementById('sidebarToggleIcon');
         const mainWrapper = document.getElementById('mainWrapper');
 
         function triggerChartResize() {
             if (revenueChartInstance) revenueChartInstance.resize();
             if (trafficChartInstance) trafficChartInstance.resize();
+        }
+
+        function updateToggleIcon() {
+            const isHidden = window.innerWidth <= 1024 
+                ? !sidebar.classList.contains('active') 
+                : sidebar.classList.contains('nav-hidden');
+
+            if (isHidden) {
+                sidebarToggleIcon.className = 'fa-solid fa-chevron-right';
+            } else {
+                sidebarToggleIcon.className = 'fa-solid fa-chevron-left';
+            }
         }
 
         function toggleNavigationMenu() {
@@ -2213,18 +2226,23 @@
                 sidebar.classList.toggle('nav-hidden');
                 mainWrapper.classList.toggle('full-width');
             }
+            updateToggleIcon();
             triggerChartResize();
             setTimeout(triggerChartResize, 100);
         }
 
-        dotsToggleBtn.addEventListener('click', toggleNavigationMenu);
+        sidebarToggleBtn.addEventListener('click', toggleNavigationMenu);
         overlay.addEventListener('click', closeSidebar);
         mainWrapper.addEventListener('transitionend', triggerChartResize);
-        window.addEventListener('resize', triggerChartResize);
+        window.addEventListener('resize', () => {
+            updateToggleIcon();
+            triggerChartResize();
+        });
 
         function closeSidebar() {
             sidebar.classList.remove('active');
             overlay.classList.remove('active');
+            updateToggleIcon();
             setTimeout(triggerChartResize, 200);
         }
 
